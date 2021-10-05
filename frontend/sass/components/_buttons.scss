@@ -1,0 +1,15 @@
+.btn {
+    display: block;
+    color: $font-color-logo;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: $primary-color;
+	box-shadow: -1px 5px 10px -5px #3f423f;
+    border-radius: 15px;
+    width: 215px;
+    height: 50px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 0.7px;
+}

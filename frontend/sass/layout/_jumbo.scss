@@ -1,0 +1,22 @@
+.my-jumbo {
+    background-color: #CCC;
+
+    &-title {
+        font-size: 1.1rem;
+    }
+}
+
+.jumbo__item {
+
+    p {
+        font-size: 0.6rem;
+    }
+}
+
+
+i {
+    border: 1px solid $primary-color;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+}

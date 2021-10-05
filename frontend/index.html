@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oripeluche - Notre site de vente de peluches en guadeloupe</title>
+
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Knewave&family=Mogra&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Google icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font awesome-->
+    <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" 
+    />
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <header class="row">
+            <div class="header__item header__item--logo col-12 col-lg-4 col-xl-5 col-xxl-5 d-flex justify-content-center align-items-center">
+                <a href="index.html"  title="Accueil du site de peluche en guadeloupe">
+                    OriPeluche
+                </a>
+            </div>
+            <div class="header__item--perso col-12 col-sm-12 col-lg-8 col-xl-7 col-xxl-7 d-flex flex-column flex-md-row justify-content-md-around align-items-center">
+                <div class="header__item header__item--perso-account col-md-6 d-flex mb-3">
+                    <div class="header__item--account-img">
+                        <img src="./images/user.png" alt="icône d'un utilisateur" width="32" height="32">
+                    </div>
+                    <div class="header__item--account-text">
+                        <p class="capitalize my-0">Compte</p>
+                        <p class="my-0">Inscription / Connexion</p>
+                    </div>
+                </div>
+                <div class="header__item header__item--perso-cart d-flex mb-3">
+                    <div class="header__item--cart-img">
+                        <a href="./cart.html">
+                         <img src="./images/shopping-bag.png" alt="icône d'un panier" width="32" height="32">
+                        </a>
+                    </div>
+                    <div class="header__item--cart-text">
+                        <p class="capitalize my-0">Panier</p>
+                        <p class="my-0"><span id="product-in-cart">1</span> produit<span id="plural"></span></p>
+                    </div>
+                </div>
+            </div>
+        </header> <!-- Fin header-->
+        <nav class="navbar header-nav row mb-2 my-0">
+            <ul class="d-flex justify-content-around">
+                <li class="text-center mt-1">
+                    <a class="nav__item nav-link active">
+                        Nos peluches
+                    </a>
+                </li>
+                <li class="mt-1">
+                    <a class="nav__item nav__item--xs nav__item--no-active nav-link">
+                        A propos
+                    </a>
+                </li>
+                <li class="mt-1">
+                    <a class="nav__item nav__item--xs nav__item--no-active nav-link">
+                        Nos promos
+                    </a>
+                </li>
+                <li class="mt-1">
+                    <a class="nav__item nav__item--xs nav__item--no-active nav-link">
+                        Contactez-nous
+                    </a>
+                </li>
+            </ul>
+        </nav><!-- Fin nav-->
+        <section class="jumbotron row my-jumbo m-1 .d-none .d-md-flex justify-content-center">
+            <div class="col col-md-6 col-lg-6 col-xl-7 d-none d-md-block">
+                <h1 class="m-3 my-jumbo-title">
+                    Adoptez une de nos peluches. <br>
+                    En 3 clics dès maintenant.
+                </h1>
+                <div class="m-3 row jumbo__item d-none d-md-flex my-4">
+                    <div class="col-md-4 jumbo__item--search my-2">
+                        <i class="fas fa-search mb-2"></i>
+                        <p>Trouvez la peluche de vos envies</p>
+                    </div>
+                    <div class="col-md-4 jumbo__item jumbo__item--settings text-center my-2">
+                        <i class="fas fa-user-cog mb-2"></i>
+                        <p>Personnalisez votre peluche</p>
+                    </div>
+                    <div class="col-md-4 jumbo__item jumbo__item--shipping text-center my-2">
+                        <i class="fas fa-shipping-fast mb-2"></i>
+                        <p>Votre peluche chez vous en moins de 24h</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <a href="./index.html" class="btn product__item--btn">
+                        <span>Plus d'infos</span> 
+                    </a>
+                </div>
+            </div>
+            <div class="col col-md-6 col-lg-6 col-xl-5 text-center d-none d-md-block">
+                <img class="w-auto" src="./images/norbert-jumbo.png" alt="Peluche norbert le préféré en guadeloupe" >
+            </div>
+        </section><!-- Fin section.jumbotron-->
+        <main class="row">
+            <div class="error text-center alert-danger"></div>
+            <section id="products" class="main__item product row py-3">
+                
+            </section>
+        </main>
+        <footer class="row">
+            <section class="col d-flex flex-column flex-md-row align-items-center justify-content-around">
+                <div class="footer__item col-12 col-md-5 col-lg-3">
+                    <p class="footer__item--aide">
+                        Aide
+                        <span></span>
+                    </p>
+                    <nav class="footer__item--nav">
+                        <ul>
+                            <li><a href="">Contacter le Service Client</a></li>
+                            <li><a href="">FAQ</a></li>
+                            <li><a href="">Comment passer une commande</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__item col-12 col-md-4 col-lg-3">
+                    <p class="footer__item--services">
+                        Services
+                        <span></span>
+                    </p>
+                    <nav class="footer__item--nav">
+                        <ul>
+                            <li><a href="">Satisfait ou remboursé</a></li>
+                            <li><a href="">Paiement sécurisé</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__item col-12 col-md-3 col-lg-3">
+                    <p class="footer__item--garanties">
+                        Garanties
+                        <span></span>
+                    </p>
+                    <nav class="footer__item--nav">
+                        <ul>
+                            <li><a href="">Mentions légales</a></li>
+                            <li><a href="">CGV</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </footer>
+    </div>
+    <script type="module" src="./js/index.js"></script>
+</body>
+</html>

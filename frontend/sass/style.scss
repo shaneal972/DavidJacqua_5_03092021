@@ -1,0 +1,22 @@
+@import './utils/variables';
+// @import './utils/placeholders';
+@import './utils/mixins';
+
+@import './base/typography';
+@import './base/general';
+@import './components/buttons';
+
+@import './layout/header';
+@import './layout/nav';
+@import './layout/jumbo';
+@import './layout/menu';
+
+
+@import './pages/home';
+@import './pages/product';
+@import './pages/cart';
+
+
+@import './layout/footer';
+
+@import './utils/medias';

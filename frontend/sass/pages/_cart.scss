@@ -1,0 +1,44 @@
+form {
+    background-color: #e0dfdf;
+}
+
+.infos__product {
+    margin-left: 15px;
+
+    // &--color {
+    //     color: #d2b48c;
+    // }
+}
+
+.product__qte {
+
+    &--input {
+        width: 35px;
+    }
+}
+
+.product__delete {
+
+    cursor: pointer;
+    color: rgb(192, 43, 43);
+    font-weight: bold;
+}
+
+.aside-cart {
+    margin-right: 16px;
+}
+
+.cart__item {
+
+    &--total {
+
+        &-price {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+    }
+}
+
+.error {
+    display: none;
+}

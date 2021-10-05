@@ -1,0 +1,282 @@
+@charset "UTF-8";
+/* General */
+html, body {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Roboto Mono", sans-serif;
+  background-color: #F4F4F4;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.white {
+  color: #FFFFFF;
+}
+
+.black {
+  color: #000000;
+}
+
+.chocolate {
+  color: #D2691E;
+}
+
+.tan {
+  color: #D2B48C;
+}
+
+.dark-brown {
+  color: #654321;
+}
+
+.pale-brown {
+  color: #987654;
+}
+
+.brown {
+  color: #A52A2A;
+}
+
+.pink {
+  color: #FFC0CB;
+}
+
+.blue {
+  color: #0000FF;
+}
+
+.beige {
+  color: #F5F5DC;
+}
+
+.bg-dark-beige {
+  background-color: #5A5A5A;
+}
+
+.btn {
+  display: block;
+  color: #E1CE1E;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #7955AE;
+  box-shadow: -1px 5px 10px -5px #3f423f;
+  border-radius: 15px;
+  width: 215px;
+  height: 50px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 1.3rem;
+  letter-spacing: 0.7px;
+}
+
+header {
+  padding-top: 20px;
+  background-color: #7955AE;
+}
+
+.header__item--logo {
+  height: 60px;
+}
+.header__item--logo a {
+  font-family: Mogra;
+  font-size: 3.2rem;
+  color: #E1CE1E;
+}
+.header__item--perso-cart {
+  width: 274px;
+}
+.header__item--account-img, .header__item--cart-img {
+  line-height: 42px;
+  margin-right: 10px;
+}
+.header__item--account-text, .header__item--cart-text {
+  padding-left: 10px;
+  border-left: 1px solid #E1CE1E;
+}
+.header__item--account-text p, .header__item--cart-text p {
+  color: #FFF;
+}
+
+.header-nav {
+  background-color: #C0DF19;
+  height: 60px;
+}
+
+.nav__item--xs {
+  display: none;
+}
+
+.nav-link {
+  font-size: 1.3rem;
+}
+
+.my-jumbo {
+  background-color: #CCC;
+}
+.my-jumbo-title {
+  font-size: 1.1rem;
+}
+
+.jumbo__item p {
+  font-size: 0.6rem;
+}
+
+i {
+  border: 1px solid #7955AE;
+  border-radius: 50%;
+  padding: 10px;
+  color: white;
+}
+
+nav {
+  height: 45px;
+  background-color: #C0DF19;
+}
+
+.nav__item {
+  color: #1C0144;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 15px;
+}
+
+.active {
+  color: #521BA3;
+}
+
+main {
+  background-color: rgba(251, 251, 251, 0.5);
+}
+
+.product__item--btn {
+  width: 250px;
+}
+
+form {
+  background-color: #e0dfdf;
+}
+
+.infos__product {
+  margin-left: 15px;
+}
+
+.product__qte--input {
+  width: 35px;
+}
+
+.product__delete {
+  cursor: pointer;
+  color: #c02b2b;
+  font-weight: bold;
+}
+
+.aside-cart {
+  margin-right: 16px;
+}
+
+.cart__item--total-price {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.error {
+  display: none;
+}
+
+footer {
+  height: 340px;
+  background-color: #7955AE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+footer section {
+  width: 220px;
+}
+footer section div:nth-child(1) {
+  margin-bottom: 20px;
+}
+
+.footer__item {
+  height: 99px;
+}
+.footer__item--aide, .footer__item--services, .footer__item--garanties {
+  margin-bottom: 10px;
+}
+.footer__item--aide span, .footer__item--services span, .footer__item--garanties span {
+  display: block;
+  border: 1px solid #C0DF19;
+  margin-top: 3px;
+  background-color: #C0DF19;
+}
+.footer__item--aide span {
+  width: 20px;
+}
+.footer__item--services span {
+  width: 39px;
+}
+.footer__item--garanties span {
+  width: 44px;
+}
+.footer__item--nav {
+  background-color: inherit;
+}
+.footer__item--nav a {
+  color: white;
+  font-size: 0.8125rem;
+}
+.footer__item--nav ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .nav__item--xs {
+    display: block;
+  }
+  .nav__item--no-active {
+    color: #1C0144;
+  }
+
+  .product__item--btn {
+    width: 300px;
+  }
+
+  .aside-cart {
+    margin-right: 0;
+  }
+
+  footer {
+    height: 145px;
+  }
+  footer section div:nth-child(1) {
+    margin-bottom: 0;
+  }
+
+  .footer__item {
+    height: 115px;
+  }
+}
+/* Media à partir de 1024px */
+@media (min-width: 992px) {
+  .my-jumbo-title {
+    font-size: 1.5rem;
+  }
+
+  .product__item--btn {
+    width: 400px;
+  }
+
+  .aside-cart {
+    margin-right: 16px;
+  }
+}/*# sourceMappingURL=style.css.map */

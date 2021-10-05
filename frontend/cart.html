@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oripeluche - Notre site de vente de peluches en guadeloupe</title>
+
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Knewave&family=Mogra&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="row">
+            <div class="header__item header__item--logo col-12 col-lg-4 col-xl-5 col-xxl-5 d-flex justify-content-center align-items-center">
+                <a href="index.html"  title="Accueil du site de peluche en guadeloupe">
+                    OriPeluche
+                </a>
+            </div>
+            <div class="header__item--perso col-12 col-sm-12 col-lg-8 col-xl-7 col-xxl-7 d-flex flex-column flex-md-row justify-content-md-around align-items-center">
+                <div class="header__item header__item--perso-account col-md-6 d-flex mb-3">
+                    <div class="header__item--account-img">
+                        <img src="./images/user.png" alt="icône d'un utilisateur" width="32" height="32">
+                    </div>
+                    <div class="header__item--account-text">
+                        <p class="capitalize my-0">Compte</p>
+                        <p class="my-0">Inscription / Connexion</p>
+                    </div>
+                </div>
+                <div class="header__item header__item--perso-cart d-flex mb-3">
+                    <div class="header__item--cart-img">
+                        <img src="./images/shopping-bag.png" alt="icône d'un panier" width="32" height="32">
+                    </div>
+                    <div class="header__item--cart-text">
+                        <p class="capitalize my-0">Panier</p>
+                        <p class="my-0"><span id="product-in-cart">1</span> produit<span id="plural"></span></p>
+                    </div>
+                </div>
+            </div>
+        </header> <!-- Fin header-->
+        <nav class="navbar header-nav row mb-2 my-0">
+            <ul class="d-flex justify-content-around">
+                <li class="text-center">
+                    <a class="nav__item nav-link active">
+                        Vos achats
+                    </a>
+                </li>
+                <li>
+                    <a class="nav__item nav__item--xs nav__item--no-active nav-link">
+                        A propos
+                    </a>
+                </li>
+                <li>
+                    <a class="nav__item nav__item--xs nav__item--no-active nav-link">
+                        Nos promos
+                    </a>
+                </li>
+                <li>
+                    <a class="nav__item nav__item--xs nav__item--no-active nav-link">
+                        Contactez-nous
+                    </a>
+                </li>
+            </ul>
+        </nav><!-- Fin nav-->
+        <main class="row">
+            <section class="main__item cart__info p-2">
+                <p class="text-uppercase fs-5">Vos informations</p>
+                <form class="row g-3 m-3 pb-3" id="infos-user">
+                    <div class="col-md-6">
+                        <label for="firstname" class="form-label">Firstname</label>
+                        <input type="text" class="form-control" 
+                                id="firstname" 
+                                placeholder="Votre prénom"
+                                required
+                                min-length="2"
+                        >
+                        <div class="error alert alert-danger"></div>
+                    </div>
+                    <div class="col-md">
+                        <label for="lastname" class="form-label">Lastname</label>
+                        <input type="text" class="form-control" 
+                                id="lastname" 
+                                placeholder="Votre nom"
+                                required
+                                min-length="2"
+                        >
+                        <div class="error alert alert-danger"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="address" class="form-label">Addresse</label>
+                        <input type="text" class="form-control" 
+                                id="address" 
+                                placeholder="Ex : Rue Paul Lacavé"
+                                required
+                                min-length="3"
+                        >
+                        <div class="error alert alert-danger"></div>
+                    </div>
+                    <div class="col-md">
+                        <label for="city" class="form-label">Ville</label>
+                        <input type="text" class="form-control" 
+                                id="city" 
+                                placeholder="Ex : Le Marin"
+                                required
+                        >
+                        <div class="error alert alert-danger"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" 
+                                id="email" 
+                                placeholder="test@test.fr"
+                                required
+                                min-length="2"
+                        >
+                        <div class="error alert alert-danger"></div>
+                    </div>
+                </form>
+                <h1 class="text-uppercase fs-5">Votre panier</h1>
+                <!-- Articles choisis par l'utilisateur-->
+                <div class="row flex-md-column flex-lg-row"> 
+                    <div class=" col col-md col-lg-7 mb-3">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <img class="mr-3" src="https://picsum.photos/105/70" alt="image d'une peluche">
+                                        <p class="fs-6 infos__product mt-1 mb-0">
+                                            <span class="fw-bold">Norbert</span> <br>
+                                            Prix : 29€ <br>
+                                            Couleur : <span id="product-color" class="infos__product--color">Tan</span>
+                                        </p>
+                                    </div>
+                                    <div class="infos__product--qte mx-3 py-2">
+                                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                                              <button type="button" class="btn-cart btn-secondary">-</button>
+                                            </div>
+                                            <div class="input-group-sm product__qte--input">
+                                              <input type="text" class="form-control" value="1">
+                                            </div>
+                                            <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                                                <button type="button" class="btn-cart btn-secondary">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="py-2 mx-2 info-product-price">
+                                        <span>29,00</span><span class="d-none d-sm-inline"> €</span> 
+                                    </div>
+                                    <p class="py-2 product__delete" title="supprimer l'article">
+                                       X
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="./index.html">
+                            <button type="button" class="btn btn-outline-dark btn-lg mt-3 fs-6">adopte un autre</button>
+                        </a>
+                    </div>
+                    <div class=" col col-md col-lg">
+                        <ul class="list-group cart">
+                            <li class="list-group-item cart__item aside-cart">
+                                <div class="cart__item--resume row border-bottom border-dark mt-2">
+                                    <p class="w-50">
+                                        <span>Panier</span>(<span id="nb-total-product-in-cart" class="cart__item--nbproduct">1</span>) 
+                                    </p>
+                                    <p class="w-50 d-flex justify-content-end cart__item--priceofproduct">
+                                        <span id="prix-total-of-product"></span><span>&nbsp;€</span>
+                                    </p>
+                                </div>
+                                <div class="cart__item--tax row border-bottom border-dark mt-2">
+                                    <p class="w-50">
+                                        <span>Livraison</span>
+                                    </p>
+                                    <p class="w-50 d-flex justify-content-end">
+                                        <span id="ship-price">gratuit</span>
+                                    </p>
+                                </div>
+                                <div class="cart__item--total row mt-2">
+                                    <p class="w-50 mb-0">
+                                        <span>Total</span>
+                                    </p>
+                                    <p class="cart__item--total-price w-50 mb-0 d-flex justify-content-end">
+                                        <span id="prix-total-of-cart"></span><span>&nbsp;€</span>
+                                    </p>
+                                </div>
+                                <div class="cart__item-btn row mb-3 mt-4 justify-content-center">
+                                    <a href="#" class="col-md-6">
+                                        <button type="submit" id="btn-cmd" class="btn">Commander</button> 
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        <footer class="row mt-3">
+            <section class="col d-flex flex-column flex-md-row align-items-center justify-content-around">
+                <div class="footer__item col-12 col-md-5 col-lg-3">
+                    <p class="footer__item--aide">
+                        Aide
+                        <span></span>
+                    </p>
+                    <nav class="footer__item--nav">
+                        <ul>
+                            <li><a href="">Contacter le Service Client</a></li>
+                            <li><a href="">FAQ</a></li>
+                            <li><a href="">Comment passer une commande</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__item col-12 col-md-4 col-lg-3">
+                    <p class="footer__item--services">
+                        Services
+                        <span></span>
+                    </p>
+                    <nav class="footer__item--nav">
+                        <ul>
+                            <li><a href="">Satisfait ou remboursé</a></li>
+                            <li><a href="">Paiement sécurisé</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__item col-12 col-md-3 col-lg-3">
+                    <p class="footer__item--garanties">
+                        Garanties
+                        <span></span>
+                    </p>
+                    <nav class="footer__item--nav">
+                        <ul>
+                            <li><a href="">Mentions légales</a></li>
+                            <li><a href="">CGV</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </footer>
+    </div>
+    <script type="module" src="./js/cart.js"></script>
+</body>
+</html>

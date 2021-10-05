@@ -1,0 +1,66 @@
+@media (min-width: map-get($grille, md)) {
+
+   
+    .nav__item {
+
+        &--xs {
+            display: block;
+        }
+
+        &--no-active {
+            color: $font-color;
+        }
+    }
+
+    .product__item {
+
+        &--btn {
+            width: 300px;
+        }
+    }
+
+    .aside-cart {
+        margin-right: 0;
+    }
+
+    footer {
+
+        height: 145px;
+
+        section {
+
+            div:nth-child(1) {
+                margin-bottom: 0;
+            }
+        }
+
+    }
+
+    .footer__item {
+        height: 115px;
+    }
+
+}
+
+/* Media à partir de 1024px */
+
+@media (min-width: map-get($grille, lg)) {
+
+    .my-jumbo {
+    
+        &-title {
+            font-size: 1.5rem;
+        }
+    }
+
+    .product__item {
+
+        &--btn {
+            width: 400px;
+        }
+    }
+
+    .aside-cart {
+        margin-right: 16px;
+    }
+}

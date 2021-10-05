@@ -1,0 +1,15 @@
+nav {
+    height: 45px;
+    background-color:$secondary-color;
+}
+
+.nav__item {
+    color: $font-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+.active {
+    color: $font-active;
+}

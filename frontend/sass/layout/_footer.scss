@@ -1,0 +1,72 @@
+footer {
+    height: 340px;
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    section {
+        width: 220px;
+
+        div:nth-child(1) {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.footer__item {
+
+    height: 99px;
+
+    &--aide,
+    &--services,
+    &--garanties {
+        margin-bottom: 10px;
+
+        span {
+            display: block;
+            border: 1px solid $secondary-color;
+            margin-top: 3px;
+            background-color: $secondary-color;
+        }
+        
+    }
+
+    &--aide {
+
+        span {
+            width: 20px;
+        }
+    }
+
+    &--services {
+
+        span {
+            width: 39px;
+        }
+    }
+
+    &--garanties {
+
+        span {
+            width: 44px;
+        }
+    }
+
+    &--nav {
+        background-color: inherit;
+
+        a {
+            color: white;
+            font-size: 0.8125rem;
+        }
+
+        ul {
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    
+}

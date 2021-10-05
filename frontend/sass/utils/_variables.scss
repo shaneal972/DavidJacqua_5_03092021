@@ -1,0 +1,35 @@
+// Couleurs du site 
+$primary-color: #7955AE;
+$secondary-color: #C0DF19;
+$font-color: #1C0144;
+$purple-in-cart: #521BA3;
+$price-color-product: #350876;
+$font-active: #521BA3;
+$font-color-logo: #E1CE1E;
+
+
+// Polices du site 
+$font-family-body: 'Roboto Mono', sans-serif;
+$font-family-logo: 'Mogra', cursive;
+
+// Taille de polices
+$size-base: 16px;
+
+// Définition des différents breakpoints
+$grille: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1440px
+);
+
+// Mes fonds
+
+$backgrounds: (
+    btn: #350876,
+    card: #f7cc8f,
+    gray-light: #F4F4F4,
+    section: $secondary-color,
+    cart: rgba(251, 251, 251, 0.5)
+);

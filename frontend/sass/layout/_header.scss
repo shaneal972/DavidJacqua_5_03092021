@@ -1,0 +1,40 @@
+header {
+    padding-top: 20px;
+    background-color: $primary-color;
+}
+
+.header__item {
+
+    &--logo {
+        height: 60px;
+
+        a {
+            font-family: Mogra;
+            font-size: 3.2rem;
+            color: $font-color-logo;
+        }
+    }
+
+    &--perso {
+
+        &-cart {
+            width: 274px;
+        }
+    }
+
+    &--account-img,
+    &--cart-img {
+        line-height: 42px;
+        margin-right: 10px;
+    }
+
+    &--account-text,
+    &--cart-text {
+        padding-left: 10px;
+        border-left: 1px solid $font-color-logo;
+        
+        p {
+            color: #FFF;
+        }
+    }
+}

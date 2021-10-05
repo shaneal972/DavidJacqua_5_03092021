@@ -1,0 +1,18 @@
+/* Responsivite */
+// Taille du container en fonction des breakpoints
+@each $nom, $breakpoint in $grille {
+    @media (min-width: $breakpoint) {
+        .container{
+            width: $breakpoint * 0.9;
+        }
+    }
+    @if $breakpoint == 1440px {
+        @media (min-width: $breakpoint) {
+            .container{
+                width: 1360px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+        }
+    }
+}

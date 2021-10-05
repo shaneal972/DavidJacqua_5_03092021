@@ -1,0 +1,9 @@
+/* General */
+html, body {
+    font-size: $size-base;
+}
+
+body {
+    font-family: $font-family-body;
+    background-color: map-get($backgrounds, gray-light);
+}

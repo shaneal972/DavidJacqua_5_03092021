@@ -1,0 +1,15 @@
+.header-nav {
+    background-color: $secondary-color;
+    height: 60px;
+}
+
+.nav__item {
+
+    &--xs {
+        display: none;
+    }
+}
+
+.nav-link {
+    font-size: 1.3rem;
+}
