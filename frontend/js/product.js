@@ -1,10 +1,13 @@
 import { getOneTeddie } from "./api.js";
 import { renderOneTeddie } from "./rendered.js";
+import { formattedPrice, getSelectedColor, productInCart, addProductToCart } from "./utils.js";
 
 
 // Variables
 let _id = '';
 let teddie = {};
+
+
 
 /*Afficher un teddie
 * 1. Récupérer le teddie depuis l'API en fonction de son _id
@@ -23,3 +26,43 @@ teddie = await getOneTeddie(_id);
 
 // 2.
 renderOneTeddie(teddie);
+
+
+/* Ajouter le produit dans le panier
+* 1. Récupérer les informations du produit à ajouter au panier : 
+*   l'id, la quantité, la couleur, le prix, le nom
+*   1-1. Vérifier la présence du produit dans le panier
+*       SI Produit présent : même id et même couleur.
+*           ALORS incrémenter sa quantité
+*       SINON On l'ajoute au tableau produits[]
+*   1-2. Ajouter le tableau produits[] au localStorage en créant la clé panier.
+*/
+
+window.onload = async function () {
+
+    // Variables 
+    let btnAdd = document.querySelector('#btn-add');    
+    
+    // Ajout d'un évènement click sur le bouton "AJOUTER AU PANIER"
+    btnAdd.addEventListener('click', function (e) {
+
+        // Récupérer les informations du produit à ajouter au panier
+        let color = getSelectedColor();
+        teddie.color = color;
+        teddie.qty = 1
+
+        addProductToCart(teddie);
+        document.location.href = './cart.html';
+    });
+
+}
+
+
+
+
+
+
+
+
+
+

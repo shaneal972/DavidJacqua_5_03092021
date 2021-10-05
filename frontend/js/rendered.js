@@ -94,7 +94,7 @@ let divProducts = document.querySelector('#products');
                 </div>
             </div>
             <div class="col-12 col-md-12 d-flex justify-content-center">
-                <a id="btn-add" href="./cart.html?id=${teddie._id}" class="btn product__item--btn my-3">
+                <a id="btn-add" href="#" class="btn product__item--btn my-3">
                     <span class="fs-5">Ajouter au panier</span> 
                 </a>
             </div>
