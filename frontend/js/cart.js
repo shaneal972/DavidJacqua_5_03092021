@@ -1,4 +1,5 @@
 import { renderCart } from "./rendered.js";
+import { deleteProductAndUpdateCart } from "./utils.js";
 
 /*Afficher les produits du panier
 * 1. Récupérer le tableau de produits depuis le localStorage
@@ -14,3 +15,9 @@ import { renderCart } from "./rendered.js";
 renderCart();
 
 
+window.onload = function () {
+
+    /* Supprimer un produit du panier */
+    deleteProductAndUpdateCart();
+
+}

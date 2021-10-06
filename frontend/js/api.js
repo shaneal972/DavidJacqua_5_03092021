@@ -3,7 +3,7 @@
 
 /* Variables et constantes */
 const URL_API = 'http://localhost:3000/api/teddies/';
-const erreur = document.querySelector('.error');
+let erreur = document.querySelector('.error');
 
 
 /**
@@ -21,6 +21,7 @@ async function getAllTeddies() {
         return teddies;
     } catch (error) {
         erreur.innerHTML = `L'erreur <strong> ${error.message} </strong> est survenue, nous essayons de la régler au plus vite !!! `;
+        erreur.style.display = 'block';
     }
 }
 
@@ -38,6 +39,7 @@ async function getOneTeddie(_id) {
         return data;
     } catch (error) {
         erreur.innerHTML = `L'erreur <strong> ${error.message} </strong> est survenue, nous essayons de la régler au plus vite !!! `;
+        erreur.style.display = 'block';
     }
 }
 

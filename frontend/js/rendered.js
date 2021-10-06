@@ -1,5 +1,5 @@
 /* Ensemble de fonctions permettant de rendre des éléments, de les afficher */
-import { formattedPrice } from "./utils.js";
+import { formattedPrice, addColorToElt } from "./utils.js";
 
 // Variables
 let divProducts = document.querySelector('#products');
@@ -95,7 +95,7 @@ let ulElt = document.querySelector('.list-group');
                 </div>
             </div>
             <div class="col-12 col-md-12 d-flex justify-content-center">
-                <a id="btn-add" href="#" class="btn product__item--btn my-3">
+                <a id="btn-add" href="cart.html" class="btn product__item--btn my-3">
                     <span class="fs-5">Ajouter au panier</span> 
                 </a>
             </div>
@@ -135,7 +135,7 @@ function createProduct(product) {
                 </div>
             </div>
             <div class="py-2 mx-2 info-product-price">
-                <span id="cart-price">${(parseFloat(formattedPrice(product.price)) * product.qty).toFixed(2)}</span><span class="d-none d-sm-inline"> €</span> 
+                <span id="cart-price">${(parseFloat(formattedPrice(product.price)) * product.qty).toFixed(2).replace('.', ',')}</span><span class="d-none d-sm-inline"> €</span>
             </div>
             <p class="py-2 product__delete" title="supprimer l'article">
             X
@@ -152,13 +152,15 @@ function createProduct(product) {
 function renderCart() {
 
     let li = '';
-
-    let productsInCart = JSON.parse(cart);
-    productsInCart.forEach(product => {
-        li += createProduct(product);
-    });
+    if (cart !== null) {
+        let productsInCart = JSON.parse(cart);
+        productsInCart.forEach(product => {
+            li += createProduct(product);
+        });
+    }
 
     ulElt.innerHTML = li;
+    addColorToElt();
 }
 
 

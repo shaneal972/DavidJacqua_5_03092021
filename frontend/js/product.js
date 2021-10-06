@@ -44,8 +44,7 @@ window.onload = async function () {
     let btnAdd = document.querySelector('#btn-add');    
     
     // Ajout d'un évènement click sur le bouton "AJOUTER AU PANIER"
-    btnAdd.addEventListener('click', function () {
-        
+    btnAdd.addEventListener('click', function (event) {
 
         // Récupérer les informations du produit à ajouter au panier
         let color = getSelectedColor();
