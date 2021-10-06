@@ -1,6 +1,6 @@
 import { getOneTeddie } from "./api.js";
 import { renderOneTeddie } from "./rendered.js";
-import { formattedPrice, getSelectedColor, productInCart, addProductToCart } from "./utils.js";
+import { getSelectedColor, addProductToCart } from "./utils.js";
 
 
 // Variables
@@ -44,7 +44,8 @@ window.onload = async function () {
     let btnAdd = document.querySelector('#btn-add');    
     
     // Ajout d'un évènement click sur le bouton "AJOUTER AU PANIER"
-    btnAdd.addEventListener('click', function (e) {
+    btnAdd.addEventListener('click', function () {
+        
 
         // Récupérer les informations du produit à ajouter au panier
         let color = getSelectedColor();

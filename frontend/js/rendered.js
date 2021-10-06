@@ -3,7 +3,8 @@ import { formattedPrice } from "./utils.js";
 
 // Variables
 let divProducts = document.querySelector('#products');
-
+let cart = localStorage.getItem('panier');
+let ulElt = document.querySelector('.list-group');
 
 
 /**
@@ -103,5 +104,62 @@ let divProducts = document.querySelector('#products');
     createOptions(colors);
 }
 
+/**
+ * Permet de créer un élément "li" à insérer dans le DOM
+ * @param {Object} product 
+ * @returns {HTMLLIElement}
+ */
+function createProduct(product) {
+    let cartElt = '';
+    cartElt = `
+        <li class="list-group-item d-flex justify-content-between product__item">
+            <div class="d-flex">
+                <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="105" height="70">
+                <p class="fs-6 infos__product mt-1 mb-0">
+                    <span id="product-name" class="fw-bold">${product.name}</span> <br>
+                    Prix : <span id="product-price">${formattedPrice(product.price)}</span> € <br>
+                    <span id="product-color" class="infos__product--color">${product.color}</span>
+                </p>
+            </div>
+            <div class="infos__product--qte mx-3 py-2">
+                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                    <button id="btn-moins" type="button" class="btn-cart btn-secondary">-</button>
+                    </div>
+                    <div class="input-group-sm product__qte--input">
+                    <input id="input-qte" type="text" data-qty=${product.qty} class="form-control" value="${product.qty}">
+                    </div>
+                    <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                        <button id="btn-plus" type="button" class="btn-cart btn-secondary">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="py-2 mx-2 info-product-price">
+                <span id="cart-price">${(parseFloat(formattedPrice(product.price)) * product.qty).toFixed(2)}</span><span class="d-none d-sm-inline"> €</span> 
+            </div>
+            <p class="py-2 product__delete" title="supprimer l'article">
+            X
+            </p>
+        </li>`;
+    
+    return cartElt;
+}
 
-export { renderTeddies, createOptions, renderOneTeddie };
+/**
+ * Permet d'afficher les produits du panier dans l'élément "ul"  
+ * de la page cart.html
+ */
+function renderCart() {
+
+    let li = '';
+
+    let productsInCart = JSON.parse(cart);
+    productsInCart.forEach(product => {
+        li += createProduct(product);
+    });
+
+    ulElt.innerHTML = li;
+}
+
+
+export { renderTeddies, createOptions, renderOneTeddie, renderCart, createProduct };
