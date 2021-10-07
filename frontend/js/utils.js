@@ -1,18 +1,24 @@
+import { renderPriceCartByQty } from './rendered.js';
+
 /* Ensemble de fonctions utiles pour le site */
 
+
+// Variables
 let productsInCart = localStorage.getItem('panier');
 let myProducts = [];
+let product = {};
+let qte = 0;
 
 /**
  * Permet de formatter un prix passé en paramètres : Passer de 3900 à 39,00
  * @param {*} price 
  * @returns {Float} price Le prix formatté sous la forme : XX,XX
  */
- function formattedPrice(price) {
-    price = price.toString()
-    price = parseFloat(price.substring(0,2));
-    price = price.toFixed(2);
-    price = price.replace('.', ',');
+function formattedPrice(price) {
+    price = price.toString();
+    price = price.slice(0, (price.length - 2));
+    price = Number.parseFloat(price).toFixed(2);
+    price = price.toString().replace('.', ',');
 
     return price;
 };
@@ -117,8 +123,24 @@ function addProductToCart(product) {
 }
 
 /**
+ * Permet de récupérer le nom 'name' et la couleur 'color' d'un produit de la liste
+ * @param {HTMLLIElement} li 
+ * @returns {Object} product
+ */
+function getInfosInListe(li) {
+    
+    product = {
+        name: li.querySelector('#product-name').innerHTML,
+        color: li.querySelector('#product-color').innerHTML,
+        qty: Number(li.querySelector('#input-qte').value)
+    }
+
+    return product;
+}
+
+/**
  * Permet de supprimer un élément de la liste d'affichage des produits
- * sur la page cart.html
+ * sur la page cart.html et met à jour le panier du Storage
  */
 function deleteProductAndUpdateCart() {
     const btnsDel = document.querySelectorAll('.product__delete');
@@ -127,12 +149,10 @@ function deleteProductAndUpdateCart() {
         btn.addEventListener('click', function (event) {
             let liElt = btn.closest('li');
             liElt.remove();
-            let product = {
-                name: liElt.querySelector('#product-name').innerHTML,
-                color: liElt.querySelector('#product-color').innerHTML,
-            }
+            let product = getInfosInListe(liElt);
             productsDelete.push(product);
-            updateCartInStorage(productsDelete);
+            updateCartInStorageAfterDelete(productsDelete);
+            location.reload();
         })
     });
 }
@@ -141,7 +161,7 @@ function deleteProductAndUpdateCart() {
  * Permet de mettre à jour le panier du Storage
  * @param {Array} products 
  */
-function updateCartInStorage(products) {
+function updateCartInStorageAfterDelete(products) {
     myProducts = JSON.parse(productsInCart);
 
     myProducts.forEach(product => {
@@ -155,7 +175,97 @@ function updateCartInStorage(products) {
 }
 
 
+/**
+ * Permet de mettre à jour le panier du Storage après un changement de quantité
+ * d'un produit du panier
+ * @param {Array} products 
+ */
+function updateCartAfterQtyChange(products) {
+    myProducts = JSON.parse(productsInCart);
 
+    myProducts.forEach(product => {
+        products.forEach(p => {
+            if (p.name === product.name && p.color === product.color) {
+                product.qty = p.qty;
+            }
+        })
+        localStorage.setItem('panier', JSON.stringify(myProducts));
+    })
+}
+
+/**
+ * Permet de supprimer un élément de la liste d'affichage des produits
+ * sur la page cart.html lorsque la quantité du produit est 0
+ * et met à jour le panier du Storage
+ * @param {HTMLInputElement} input
+ */
+ function deleteProductWhenInputChange(input) {
+    
+    let productsDelete = [];    
+
+    let liElt = input.closest('li');
+    liElt.remove();
+    let product = getInfosInListe(liElt);
+    productsDelete.push(product);
+    updateCartInStorageAfterDelete(productsDelete);
+}
+
+/**
+ * Permet de changer les informations d'un produit si la quantité change
+ * @param {HTMLLIElement} elts 
+ */
+function productQtyChange(elts) {
+    elts.forEach(li => {
+        li.addEventListener('click', function (event) {
+            if (event.target.innerHTML === '+') {
+                let input = li.querySelector('#input-qte');
+                qte = Number(input.value);
+                qte++;
+                input.setAttribute('value', qte.toString());
+                // Affiche le prix multiplié par la quantité 
+                renderPriceCartByQty(qte, li);
+                // Récupère informations du produit
+                let product = getInfosInListe(li);
+                console.log(Array(product));
+                updateCartAfterQtyChange(Array(product));
+                location.reload();
+            }
+            if (event.target.innerHTML === '-') {
+                let input = li.querySelector('#input-qte');
+                qte = Number(input.value);
+                qte--;
+                input.setAttribute('value', qte.toString());
+                // Affiche le prix multiplié par la quantité 
+                renderPriceCartByQty(qte, li);
+                // Récupère informations du produit
+                let product = getInfosInListe(li);
+                console.log(Array(product));
+                updateCartAfterQtyChange(Array(product));
+                
+                if (qte < 0 || qte === NaN) {
+                    qte = 1;
+                    input.setAttribute('value', qte.toString());
+                }
+                if (qte === 0) {
+                    deleteProductWhenInputChange(input)
+                }
+                location.reload();
+            }
+        });
+    });
+}
+
+/**
+ * Met au pluriel un mot en lui ajoutant un 's' ou pas.
+ * @param {Number} qte 
+ * @returns {String} plurals
+ */
+function showPlural(qte) {
+    let plurals = '';
+    qte === 0 || qte === 1 ? plurals : plurals = 's';
+
+    return plurals;
+}
 
 export {
     formattedPrice,
@@ -163,6 +273,9 @@ export {
     productInCart,
     addProductToCart,
     deleteProductAndUpdateCart,
-    updateCartInStorage,
-    addColorToElt
+    updateCartInStorageAfterDelete,
+    addColorToElt,
+    deleteProductWhenInputChange,
+    productQtyChange,
+    showPlural
 };

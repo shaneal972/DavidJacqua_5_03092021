@@ -1,5 +1,5 @@
 /* Ensemble de fonctions permettant de rendre des éléments, de les afficher */
-import { formattedPrice, addColorToElt } from "./utils.js";
+import { formattedPrice, addColorToElt, showPlural } from "./utils.js";
 
 // Variables
 let divProducts = document.querySelector('#products');
@@ -163,5 +163,70 @@ function renderCart() {
     addColorToElt();
 }
 
+/**
+ * Permet d'afficher le prix du produit en fonction de la quantité 
+ * du produit.
+ * @param {Number} qty 
+ * @param {HTMLLIElement} li 
+ */
+function renderPriceCartByQty(qty, li) {
+    
+    let cartPrice = li.querySelector('#cart-price');
+    let productPrice = li.querySelector('#product-price');
+    let priceInCart = qty * parseFloat(productPrice.innerHTML);
+    priceInCart = priceInCart + '00';
+    cartPrice.innerHTML = formattedPrice(priceInCart);
+}
 
-export { renderTeddies, createOptions, renderOneTeddie, renderCart, createProduct };
+
+function renderInfosOfCartInPage() {
+    const nbProducts = document.querySelectorAll('.nb-product');
+    const cartPrices = document.querySelectorAll('#cart-price');
+    const plural = document.querySelector('#plural');
+    const priceTotalOfProduct = document.querySelector('#price-total-of-product');
+    const shipPrice = document.querySelector('#ship-price');
+    const priceTotalOfCart = document.querySelector('#price-total-of-cart');
+    let inputQte = document.querySelectorAll('#input-qte');
+    let qtyOfProducts = 0;
+    let priceTotalProduct = 0;
+    let priceTotalCart = 0;
+    let tax = 0;
+
+    // Calcul de la quantité de produits du panier
+    inputQte.forEach(input => {
+        qtyOfProducts += Number(input.value);
+    });
+
+    // Affiche la quantité de produit 
+    nbProducts.forEach(np => {
+        np.innerHTML = qtyOfProducts;
+    });
+
+    // Mise au pluriel du mot produit dans le header de la page
+    plural.innerHTML = showPlural(qtyOfProducts);
+
+    // Affiche le prix total des produits
+    cartPrices.forEach(cp => {
+        priceTotalProduct += parseFloat(cp.innerHTML);
+    });
+    priceTotalProduct = priceTotalProduct + '00';
+    priceTotalOfProduct.innerHTML = formattedPrice(priceTotalProduct);
+
+    // Affiche le prix total du panier
+    shipPrice.innerHTML === 'gratuit' ? tax = 0 : tax = parseFloat(shipPrice.innerHTML);
+    priceTotalCart = (tax + parseFloat(priceTotalOfProduct.innerHTML));
+    priceTotalCart += '00';
+    priceTotalOfCart.innerHTML = formattedPrice(priceTotalCart);
+    
+}
+
+
+export {
+    renderTeddies,
+    createOptions,
+    renderOneTeddie,
+    renderCart,
+    createProduct,
+    renderPriceCartByQty,
+    renderInfosOfCartInPage
+};
