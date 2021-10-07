@@ -4,6 +4,7 @@
 /* Variables et constantes */
 const URL_API = 'http://localhost:3000/api/teddies/';
 let erreur = document.querySelector('.error');
+let commande = {};
 
 
 /**
@@ -43,5 +44,41 @@ async function getOneTeddie(_id) {
     }
 }
 
+/**
+ * Permet d'envoyer une requête à l'API en POST 
+ * @param {Object} contact Informations sur l'acheteur
+ * @param {Array} products Tableau des id du panier
+ */
+const postCommand = async (contact, products) => {
+    try {
+        const urlPost = URL_API + 'order';
+        const response = await fetch(urlPost, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contact: contact,
+                products: products
+            })
+        });
+        const data = await response.json();
+        //Retourne les informations du serveur après le post
+        commande = {
+            'contact': data.contact,
+            'orderId': data.orderId,
+            'products': data.products
+        };
+        // Stocke le retour du serveur dans le Storage
+        localStorage.setItem('commande', JSON.stringify(commande));
 
-export { getAllTeddies, getOneTeddie };
+        // Redirection vers la page commande
+        location.href = "./commande.html";
+    } catch(error) {
+        erreur.innerHTML = error;
+    } 
+}
+
+
+export { getAllTeddies, getOneTeddie, postCommand };
