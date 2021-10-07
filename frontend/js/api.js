@@ -50,6 +50,7 @@ async function getOneTeddie(_id) {
  * @param {Array} products Tableau des id du panier
  */
 const postCommand = async (contact, products) => {
+    console.log("entrée");
     try {
         const urlPost = URL_API + 'order';
         const response = await fetch(urlPost, {
@@ -64,6 +65,7 @@ const postCommand = async (contact, products) => {
             })
         });
         const data = await response.json();
+        console.log(data);
         //Retourne les informations du serveur après le post
         commande = {
             'contact': data.contact,
@@ -72,9 +74,6 @@ const postCommand = async (contact, products) => {
         };
         // Stocke le retour du serveur dans le Storage
         localStorage.setItem('commande', JSON.stringify(commande));
-
-        // Redirection vers la page commande
-        location.href = "./commande.html";
     } catch(error) {
         erreur.innerHTML = error;
     } 

@@ -1,11 +1,11 @@
-import { renderPriceCartByQty } from './rendered.js';
+import { renderPriceCartByQty, renderInfosOfCartInPage } from './rendered.js';
 
 /* Ensemble de fonctions utiles pour le site */
 
 
 // Variables
 let productsInCart = localStorage.getItem('panier');
-let myProducts = [];
+let myProducts = JSON.parse(productsInCart);
 let product = {};
 let qte = 0;
 
@@ -76,7 +76,6 @@ function addColorToElt() {
  * @returns {boolean} inCart 
  */
 function productInCart(product) {
-    myProducts = JSON.parse(productsInCart);
     let inCart = false;
 
     // Vérifier la présence du produit (product) dans le panier (productsInCart) 
@@ -96,7 +95,6 @@ function productInCart(product) {
 function addProductToCart(product) {
 
     if (productsInCart !== null) {
-        myProducts = JSON.parse(productsInCart);
         // Vérifier si le produit à ajouter est déjà dans le panier
         let inCart = productInCart(product);
         if (inCart === true) {
@@ -127,32 +125,34 @@ function addProductToCart(product) {
  * @param {HTMLLIElement} li 
  * @returns {Object} product
  */
-function getInfosInListe(li) {
+function getInfosOfProductInCartPage(li) {
     
-    product = {
+    let productInPage = {
         name: li.querySelector('#product-name').innerHTML,
         color: li.querySelector('#product-color').innerHTML,
         qty: Number(li.querySelector('#input-qte').value)
     }
 
-    return product;
+    return productInPage;
 }
 
 /**
  * Permet de supprimer un élément de la liste d'affichage des produits
  * sur la page cart.html et met à jour le panier du Storage
  */
-function deleteProductAndUpdateCart() {
+function deleteProduct() {
     const btnsDel = document.querySelectorAll('.product__delete');
     let productsDelete = [];
+    let product;
+    let liElt;
     btnsDel.forEach(btn => {
-        btn.addEventListener('click', function (event) {
-            let liElt = btn.closest('li');
+        btn.addEventListener('click', function () {
+            liElt = btn.closest('li');
             liElt.remove();
-            let product = getInfosInListe(liElt);
+            product = getInfosOfProductInCartPage(liElt);
             productsDelete.push(product);
             updateCartInStorageAfterDelete(productsDelete);
-            location.reload();
+            renderInfosOfCartInPage();
         })
     });
 }
@@ -162,7 +162,6 @@ function deleteProductAndUpdateCart() {
  * @param {Array} products 
  */
 function updateCartInStorageAfterDelete(products) {
-    myProducts = JSON.parse(productsInCart);
 
     myProducts.forEach(product => {
         products.forEach(p => {
@@ -181,7 +180,6 @@ function updateCartInStorageAfterDelete(products) {
  * @param {Array} products 
  */
 function updateCartAfterQtyChange(products) {
-    myProducts = JSON.parse(productsInCart);
 
     myProducts.forEach(product => {
         products.forEach(p => {
@@ -205,9 +203,10 @@ function updateCartAfterQtyChange(products) {
 
     let liElt = input.closest('li');
     liElt.remove();
-    let product = getInfosInListe(liElt);
+    let product = getInfosOfProductInCartPage(liElt);
     productsDelete.push(product);
-    updateCartInStorageAfterDelete(productsDelete);
+     updateCartInStorageAfterDelete(productsDelete);
+     renderInfosOfCartInPage();
 }
 
 /**
@@ -215,31 +214,31 @@ function updateCartAfterQtyChange(products) {
  * @param {HTMLLIElement} elts 
  */
 function productQtyChange(elts) {
+    let product;
+    let input;
     elts.forEach(li => {
         li.addEventListener('click', function (event) {
             if (event.target.innerHTML === '+') {
-                let input = li.querySelector('#input-qte');
+                input = li.querySelector('#input-qte');
                 qte = Number(input.value);
                 qte++;
                 input.setAttribute('value', qte.toString());
                 // Affiche le prix multiplié par la quantité 
                 renderPriceCartByQty(qte, li);
                 // Récupère informations du produit
-                let product = getInfosInListe(li);
-                console.log(Array(product));
+                product = getInfosOfProductInCartPage(li);
                 updateCartAfterQtyChange(Array(product));
-                location.reload();
+                renderInfosOfCartInPage();
             }
             if (event.target.innerHTML === '-') {
-                let input = li.querySelector('#input-qte');
+                input = li.querySelector('#input-qte');
                 qte = Number(input.value);
                 qte--;
                 input.setAttribute('value', qte.toString());
                 // Affiche le prix multiplié par la quantité 
                 renderPriceCartByQty(qte, li);
                 // Récupère informations du produit
-                let product = getInfosInListe(li);
-                console.log(Array(product));
+                product = getInfosOfProductInCartPage(li);
                 updateCartAfterQtyChange(Array(product));
                 
                 if (qte < 0 || qte === NaN) {
@@ -249,7 +248,7 @@ function productQtyChange(elts) {
                 if (qte === 0) {
                     deleteProductWhenInputChange(input)
                 }
-                location.reload();
+                renderInfosOfCartInPage();
             }
         });
     });
@@ -272,7 +271,7 @@ export {
     getSelectedColor,
     productInCart,
     addProductToCart,
-    deleteProductAndUpdateCart,
+    deleteProduct,
     updateCartInStorageAfterDelete,
     addColorToElt,
     deleteProductWhenInputChange,

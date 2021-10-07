@@ -111,6 +111,7 @@ let ulElt = document.querySelector('.list-group');
  */
 function createProduct(product) {
     let cartElt = '';
+    // product.price = product.price + '00';
     cartElt = `
         <li class="list-group-item d-flex justify-content-between product__item">
             <div class="d-flex">

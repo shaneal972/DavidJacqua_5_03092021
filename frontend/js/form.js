@@ -68,5 +68,4 @@ let validate = (id, serial, message) => {
 
 
 
-
 export { validate, id, classes };

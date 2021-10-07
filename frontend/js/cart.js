@@ -2,7 +2,7 @@ import { renderCart, renderInfosOfCartInPage } from "./rendered.js";
 import { validate, id, classes } from "./form.js";
 import { postCommand } from "./api.js";
 import {
-    deleteProductAndUpdateCart,
+    deleteProduct,
     deleteProductWhenInputChange,
     formattedPrice,
     productQtyChange
@@ -16,14 +16,21 @@ renderCart();
 window.onload = function () {
 
     // Variables
+    let mesProduits = [];
     let liElts = document.querySelectorAll('.product__item');
     let btnCmd = id('btn-cmd');
     let commande = {};
     let products = [];
 
 
+    /* Les produits du panier dans le localStorage */
+    JSON.parse(localStorage.getItem('panier')).forEach(p => {
+        mesProduits.push(p);
+    })
+
+
     /* Supprimer un produit du panier */
-    deleteProductAndUpdateCart();
+    deleteProduct();
 
     /* Changer la quantité d'un produit du panier affiché*/
     productQtyChange(liElts);
