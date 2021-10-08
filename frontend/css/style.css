@@ -61,6 +61,11 @@ ul {
   background-color: #5A5A5A;
 }
 
+.bg-primary {
+  background-color: #ccc !important;
+  padding: 5px;
+}
+
 .btn {
   display: block;
   color: #E1CE1E;
@@ -189,6 +194,12 @@ form {
 
 .error {
   display: none;
+}
+
+.perspective {
+  width: 542px;
+  height: 52px;
+  background-color: #7955AE;
 }
 
 footer {

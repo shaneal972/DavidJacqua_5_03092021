@@ -118,7 +118,7 @@ function createProduct(product) {
                 <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="105" height="70">
                 <p class="fs-6 infos__product mt-1 mb-0">
                     <span id="product-name" class="fw-bold">${product.name}</span> <br>
-                    Prix : <span id="product-price">${formattedPrice(product.price)}</span> € <br>
+                    Prix unitaire : <span id="product-price">${formattedPrice(product.price)}</span> € <br>
                     <span id="product-color" class="infos__product--color">${product.color}</span>
                 </p>
             </div>

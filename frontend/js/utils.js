@@ -50,6 +50,7 @@ function addColorToElt() {
             namedColor = namedColor.toLowerCase();
             spans[i].classList.add(namedColor);
         }
+        spans[i].classList.add('bg-primary')
     }
 }
 

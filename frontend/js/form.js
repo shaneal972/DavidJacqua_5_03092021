@@ -39,12 +39,12 @@ let validate = (id, serial, message) => {
     }
 
     if (id.getAttribute('type') === 'email') {
-
+        let validRegex;
         if (id.value.trim() !== "" || id.value.trim().length > 2) {
 
             errorMsg[serial].innerHTML = '';
             
-            let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             
             // On vérifie que l'email entré vérifie la Regex de validation de mails.
             if (id.value.match(validRegex)) {
@@ -61,11 +61,22 @@ let validate = (id, serial, message) => {
         }
     }
 
+    if ((id.getAttribute('id') === 'firstname') || (id.getAttribute('id') === 'lastname')) {
+       
+        // On vérifie que la valeur entrée vérifie la Regex de validation.
+        if (id.value.match(/^[a-zà-ï-]+$/gi)) {
+            errorMsg[serial].innerHTML = "";
+            id.style.border = "2px solid green";
+            errorMsg[serial].style.display = "none";
+            valid = true;
+        } else {
+            errorMsg[serial].style.display = "block";
+            errorMsg[serial].innerHTML = "Ce champ ne doit pas contenir de nombre, merci de le retaper";
+            id.style.border = "2px solid red";
+            valid = false;
+        }
+    }
     return valid;
 }
-
-
-
-
 
 export { validate, id, classes };
