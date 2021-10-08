@@ -1,5 +1,5 @@
 /* Ensemble de fonctions permettant de rendre des éléments, de les afficher */
-import { formattedPrice, addColorToElt, showPlural } from "./utils.js";
+import { formattedPrice, addColorToElt, showPlural, qteProductInCart } from "./utils.js";
 
 // Variables
 let divProducts = document.querySelector('#products');
@@ -179,7 +179,10 @@ function renderPriceCartByQty(qty, li) {
     cartPrice.innerHTML = formattedPrice(priceInCart);
 }
 
-
+/**
+ * Permet de mettre à jour la page avec les informations du panier
+ * présent dan sle localStorage
+ */
 function renderInfosOfCartInPage() {
     const nbProducts = document.querySelectorAll('.nb-product');
     const cartPrices = document.querySelectorAll('#cart-price');
@@ -221,6 +224,25 @@ function renderInfosOfCartInPage() {
     
 }
 
+/**
+ * 
+ */
+function renderQtyOfProduct() {
+    let url = new URL(document.location);
+    let page = url.pathname.slice(10);
+    let qte = 0;
+    let productInCart;
+    let plural;
+    if ((page === 'index.html') || (page === 'product.html') || page === 'commande.html') {
+        productInCart = document.querySelector('#product-in-cart');
+        plural = document.querySelector('#plural');
+        qte = qteProductInCart();
+        productInCart.innerHTML = qte;
+        // Mise au pluriel du mot produit dans le header de la page
+        plural.innerHTML = showPlural(qte);
+    }
+}
+
 
 export {
     renderTeddies,
@@ -229,5 +251,6 @@ export {
     renderCart,
     createProduct,
     renderPriceCartByQty,
-    renderInfosOfCartInPage
+    renderInfosOfCartInPage,
+    renderQtyOfProduct
 };

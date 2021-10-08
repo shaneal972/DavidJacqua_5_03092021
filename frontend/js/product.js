@@ -1,5 +1,5 @@
 import { getOneTeddie } from "./api.js";
-import { renderOneTeddie } from "./rendered.js";
+import { renderOneTeddie, renderQtyOfProduct } from "./rendered.js";
 import { getSelectedColor, addProductToCart } from "./utils.js";
 
 
@@ -39,9 +39,11 @@ renderOneTeddie(teddie);
 */
 
 window.onload = async function () {
-
+    
     // Variables 
-    let btnAdd = document.querySelector('#btn-add');    
+    let btnAdd = document.querySelector('#btn-add');
+    
+    renderQtyOfProduct();
     
     // Ajout d'un évènement click sur le bouton "AJOUTER AU PANIER"
     btnAdd.addEventListener('click', function (event) {

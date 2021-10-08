@@ -6,6 +6,7 @@ import { renderPriceCartByQty, renderInfosOfCartInPage } from './rendered.js';
 // Variables
 let productsInCart = localStorage.getItem('panier');
 let myProducts = JSON.parse(productsInCart);
+let mesProduits = [];
 let product = {};
 let qte = 0;
 
@@ -254,6 +255,18 @@ function productQtyChange(elts) {
     });
 }
 
+function qteProductInCart() {
+    if (productsInCart !== null) {
+        myProducts.forEach(p => {
+            mesProduits.push(p);
+        });
+    };
+    mesProduits.forEach(mp => {
+        qte += mp.qty;
+    });
+    return qte;
+}
+
 /**
  * Met au pluriel un mot en lui ajoutant un 's' ou pas.
  * @param {Number} qte 
@@ -276,5 +289,6 @@ export {
     addColorToElt,
     deleteProductWhenInputChange,
     productQtyChange,
+    qteProductInCart,
     showPlural
 };

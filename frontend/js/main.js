@@ -1,5 +1,6 @@
 import { getAllTeddies } from "./api.js";
-import { renderTeddies } from "./rendered.js";
+import { renderTeddies, renderQtyOfProduct } from "./rendered.js";
+import { qteProductInCart } from "./utils.js";
 
 /*Afficher tous les teddies
 * 1. Récupérer les teddies depuis l'API
@@ -8,6 +9,8 @@ import { renderTeddies } from "./rendered.js";
 
 // Variables
 let teddies = [];
+let mesProduits = [];
+let productInCart = document.querySelector('#product-in-cart');
 
 // 1.
 teddies = await getAllTeddies();
@@ -15,3 +18,8 @@ teddies = await getAllTeddies();
 // 2.
 // Créer le teddie et l'insérer dans le DOM
 renderTeddies(teddies);
+
+
+window.onload = () => {
+    renderQtyOfProduct();
+}
