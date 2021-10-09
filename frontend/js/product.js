@@ -6,6 +6,7 @@ import { getSelectedColor, addProductToCart } from "./utils.js";
 // Variables
 let _id = '';
 let teddie = {};
+let productsInCart = localStorage.getItem('panier');
 
 
 
@@ -54,7 +55,7 @@ window.onload = async function () {
         teddie.qty = 1
 
         addProductToCart(teddie);
-        document.location.href = './cart.html';
+        // document.location.href = './cart.html';
     });
 
 }

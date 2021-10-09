@@ -24,9 +24,11 @@ window.onload = function () {
 
 
     /* Les produits du panier dans le localStorage */
-    JSON.parse(localStorage.getItem('panier')).forEach(p => {
-        mesProduits.push(p);
-    })
+    if (localStorage.getItem('panier') !== null) {
+        JSON.parse(localStorage.getItem('panier')).forEach(p => {
+            mesProduits.push(p);
+        })
+    }
 
 
     /* Supprimer un produit du panier */
@@ -47,7 +49,7 @@ window.onload = function () {
     
     
     btnCmd.addEventListener('click', function (event) {
-        event.preventDefault();
+        // event.preventDefault();
         let validFirstName = validate(firstname, 0, "Le prénom ne doit pas être vide et doit être supérieur à 2 caractères");
         let validLastName = validate(lastname, 1, "Le nom ne doit pas être vide et doit être supérieur à 2 caractères");
         let validAddress = validate(address, 2, "L'adresse ne doit pas être vide et doit être supérieur à 2 caractères");

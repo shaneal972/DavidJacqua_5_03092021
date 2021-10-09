@@ -7,8 +7,8 @@ import { renderPriceCartByQty, renderInfosOfCartInPage } from './rendered.js';
 let productsInCart = localStorage.getItem('panier');
 let myProducts = JSON.parse(productsInCart);
 let mesProduits = [];
-let product = {};
 let qte = 0;
+let arrayOfProduct = [];
 
 /**
  * Permet de formatter un prix passé en paramètres : Passer de 3900 à 39,00
@@ -23,6 +23,31 @@ function formattedPrice(price) {
 
     return price;
 };
+
+
+function getInfosIncartByName(name, color) {
+    let product = {
+        price: 0,
+        qty: 0,
+        name: '',
+        image: ''
+    };
+    
+    console.log(myProducts);
+    myProducts.forEach(mp => {
+        console.log(mp.name, mp.color);
+        if (name === mp.name && color === mp.color) {
+            product.price = mp.price;
+            product.qty = mp.qty;
+            product.name = mp.name;
+            product.image = mp.imageUrl;
+            console.log(product);
+        }
+    });
+    arrayOfProduct.push(product);
+
+    return arrayOfProduct;
+}
 
 /**
  * Permet de coloré le nom de la couleur du produit par sa couleur 
@@ -97,10 +122,12 @@ function productInCart(product) {
 function addProductToCart(product) {
 
     if (productsInCart !== null) {
+        console.log(productsInCart);
         // Vérifier si le produit à ajouter est déjà dans le panier
         let inCart = productInCart(product);
         if (inCart === true) {
             for (const p of myProducts) {
+                console.log(myProducts);
                 if (product._id === p._id && product.color === p.color) {
                     // Incrémente la quantité du produit dans le panier
                     p.qty += 1;
@@ -111,14 +138,14 @@ function addProductToCart(product) {
             localStorage.setItem('panier', JSON.stringify(myProducts));
         };
         if (inCart === false) {
-            myProducts.push(product);
-            localStorage.setItem('panier', JSON.stringify(myProducts));
+            mesProduits.push(product);
+            localStorage.setItem('panier', JSON.stringify(mesProduits));
         }
     } else {
         // Ajout du produit (product) dans myProducts[]
-        myProducts.push(product);
+        mesProduits.push(product);
         // Création du panier dans le localStorage
-        localStorage.setItem('panier', JSON.stringify(myProducts));
+        localStorage.setItem('panier', JSON.stringify(mesProduits));
     }
 }
 
@@ -282,6 +309,7 @@ function showPlural(qte) {
 
 export {
     formattedPrice,
+    getInfosIncartByName,
     getSelectedColor,
     productInCart,
     addProductToCart,

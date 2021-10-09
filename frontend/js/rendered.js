@@ -1,10 +1,19 @@
 /* Ensemble de fonctions permettant de rendre des éléments, de les afficher */
-import { formattedPrice, addColorToElt, showPlural, qteProductInCart } from "./utils.js";
+import {
+    formattedPrice,
+    addColorToElt,
+    showPlural,
+    qteProductInCart,
+    getInfosIncartByName
+} from "./utils.js";
 
 // Variables
 let divProducts = document.querySelector('#products');
 let cart = localStorage.getItem('panier');
 let ulElt = document.querySelector('.list-group');
+let card = document.querySelector('.card');
+
+let myProducts = [];
 
 
 /**
@@ -95,7 +104,7 @@ let ulElt = document.querySelector('.list-group');
                 </div>
             </div>
             <div class="col-12 col-md-12 d-flex justify-content-center">
-                <a id="btn-add" href="cart.html" class="btn product__item--btn my-3">
+                <a id="btn-add" href="./cart.html" class="btn product__item--btn my-3">
                     <span class="fs-5">Ajouter au panier</span> 
                 </a>
             </div>
@@ -111,7 +120,7 @@ let ulElt = document.querySelector('.list-group');
  */
 function createProduct(product) {
     let cartElt = '';
-    // product.price = product.price + '00';
+
     cartElt = `
         <li class="list-group-item d-flex justify-content-between product__item">
             <div class="d-flex">
@@ -225,7 +234,8 @@ function renderInfosOfCartInPage() {
 }
 
 /**
- * 
+ * Permet de renseigner la quantité de produits dans le header
+ * si panier n'est pas vide.
  */
 function renderQtyOfProduct() {
     let url = new URL(document.location);
@@ -244,6 +254,102 @@ function renderQtyOfProduct() {
 }
 
 
+let Now = () => {
+    let date = new Date();
+    let options = {weekday: "long", year: "numeric", month: "long", day: "2-digit"};
+    return date.toLocaleDateString("fr-FR", options);
+}
+
+let renderHeadOfCommand = (commande) => {
+
+    
+    let cmdElt = '';
+    commande[0].products.forEach(p => {
+        myProducts.push(p);
+    }); 
+    
+    cmdElt += `
+        <div class="card-body">
+            <h5 class="card-title text-center">N° commande : </h5>
+            <h6 class="num-cmd text-center text-danger fw-bold fs-4"> ${commande[0].orderId}</h6>
+            <p class="card-text">
+                <span class="text-info">${commande[0].contact.firstName}</span> nous vous remercions pour votre achat 
+                et espérons qu'il répondra à vos attentes. <br>
+                <span class="py-2 d-block">Vous trouverez ci-dessous le résumé de votre achat :</span>
+            </p>
+        </div>
+        <div class="card-body row">
+            <div class="card-text col-sm col-md-6">
+                Envoyé à : <br>
+                <address class="text-info">
+                    ${commande[0].contact.address} <br>
+                    ${commande[0].contact.city}
+                </address> 
+            </div>
+            <div class="card-text col-sm col-md-6">
+                <p>Date de l'achat : <br>
+                 <span class="text-info">${Now()}</span>
+                </p>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush px-1">
+        </ul>
+        <div class="card-body">
+            <p class="text-end">
+                Total : 
+                <span class="total-cmd text-danger fw-bold fs-3"></span>
+                <span class="text-danger fw-bold fs-3"> € </span>
+            </p>
+        </div>`;
+    
+    card.innerHTML = cmdElt;
+
+}
+
+let createElementLiOfCommand = (product) => {
+    let li = '';
+
+    return li = `
+    <li class="list-group-item">
+        <div class="d-flex flex-column align-items-center flex-sm-row justify-content-sm-between">
+            <img class="mr-3" src="${product.image}" alt="image d'une peluche" width="55" height="40">
+            <p class="fs-6 infos__product mt-1 mb-0">
+                <span class="fw-bold">${product.name}</span> <br>
+            </p>
+            <div class="infos__product--qte mx-3 py-2">
+                <div class="">
+                    Quantité : <span id="product-qte">${product.qty}</span>
+                </div>
+            </div>
+            <div class="py-2 mx-2 info-product-price">
+                <span>PU : ${formattedPrice(product.price)}</span><span class="d-none d-sm-inline"> €</span> 
+            </div>
+        </div>
+    </li>`;
+}
+
+
+let renderProductsOfCommand = () => {
+    let li = '';
+    let eltUL = document.querySelector('.list-group');
+    let totalCmd = document.querySelector('.total-cmd');
+    let productArray;
+    let total = 0;
+    myProducts = JSON.parse(cart);
+    myProducts.forEach(mp => {
+        console.log(mp.name, mp.color);
+        productArray = getInfosIncartByName(mp.name, mp.color);
+    });
+    
+    productArray.forEach(pa => {
+        li += createElementLiOfCommand(pa);
+        total += (pa.price * pa.qty);
+    });
+
+    eltUL.innerHTML = li;
+    totalCmd.innerHTML = formattedPrice(total);
+}
+
 export {
     renderTeddies,
     createOptions,
@@ -252,5 +358,7 @@ export {
     createProduct,
     renderPriceCartByQty,
     renderInfosOfCartInPage,
-    renderQtyOfProduct
+    renderQtyOfProduct,
+    renderHeadOfCommand,
+    renderProductsOfCommand
 };
