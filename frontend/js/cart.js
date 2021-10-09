@@ -50,6 +50,10 @@ window.onload = function () {
     
     btnCmd.addEventListener('click', function (event) {
         // event.preventDefault();
+        let validForm;
+        
+
+
         let validFirstName = validate(firstname, 0, "Le prénom ne doit pas être vide et doit être supérieur à 2 caractères");
         let validLastName = validate(lastname, 1, "Le nom ne doit pas être vide et doit être supérieur à 2 caractères");
         let validAddress = validate(address, 2, "L'adresse ne doit pas être vide et doit être supérieur à 2 caractères");
@@ -63,6 +67,7 @@ window.onload = function () {
             validCity === true &&
             validEmail === true
         ) {
+            validForm = true;
             //On crée l'objet contact 😅 
             let contact = {
                 firstName: firstname.value,
@@ -82,6 +87,14 @@ window.onload = function () {
 
             //Envoi des informations du client et du panier au serveur en méthode POST
             postCommand(contact, products);
+        } else {
+            validForm = false;
+        }
+
+        if (validForm === false) {
+            location.href = "#";
+        } else {
+            location.href = "./commande.html"
         }
         
     })

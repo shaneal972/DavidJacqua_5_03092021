@@ -24,7 +24,12 @@ function formattedPrice(price) {
     return price;
 };
 
-
+/**
+ * Permet de récupérer des informations du panier
+ * @param {*} name 
+ * @param {*} color 
+ * @returns {Array} 
+ */
 function getInfosIncartByName(name, color) {
     let product = {
         price: 0,
@@ -33,17 +38,16 @@ function getInfosIncartByName(name, color) {
         image: ''
     };
     
-    console.log(myProducts);
     myProducts.forEach(mp => {
-        console.log(mp.name, mp.color);
+
         if (name === mp.name && color === mp.color) {
             product.price = mp.price;
             product.qty = mp.qty;
             product.name = mp.name;
             product.image = mp.imageUrl;
-            console.log(product);
         }
     });
+
     arrayOfProduct.push(product);
 
     return arrayOfProduct;

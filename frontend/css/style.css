@@ -161,6 +161,10 @@ main {
   background-color: rgba(251, 251, 251, 0.5);
 }
 
+#nos-peluches {
+  color: #1C0144;
+}
+
 .product__item--btn {
   width: 250px;
 }

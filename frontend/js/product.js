@@ -55,7 +55,6 @@ window.onload = async function () {
         teddie.qty = 1
 
         addProductToCart(teddie);
-        // document.location.href = './cart.html';
     });
 
 }

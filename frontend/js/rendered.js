@@ -253,15 +253,22 @@ function renderQtyOfProduct() {
     }
 }
 
-
+/**
+ * Permet de retourner la date en français "samedi 09 octobre 2021"
+ * @returns {Date} Date en français
+ */
 let Now = () => {
     let date = new Date();
     let options = {weekday: "long", year: "numeric", month: "long", day: "2-digit"};
     return date.toLocaleDateString("fr-FR", options);
 }
 
-let renderHeadOfCommand = (commande) => {
 
+/**
+ * Permet de rendre l'entête d'une commade
+ * @param {*} commande 
+ */
+let renderHeadOfCommand = (commande) => {
     
     let cmdElt = '';
     commande[0].products.forEach(p => {
@@ -306,6 +313,11 @@ let renderHeadOfCommand = (commande) => {
 
 }
 
+/**
+ * Permet de créer un élémént "li"
+ * @param {*} product 
+ * @returns {HTMLLIElement} Un élément "li"
+ */
 let createElementLiOfCommand = (product) => {
     let li = '';
 
@@ -328,7 +340,9 @@ let createElementLiOfCommand = (product) => {
     </li>`;
 }
 
-
+/**
+ * Permet d'afficher les produits lors du résumé de la commande
+ */
 let renderProductsOfCommand = () => {
     let li = '';
     let eltUL = document.querySelector('.list-group');
@@ -337,7 +351,6 @@ let renderProductsOfCommand = () => {
     let total = 0;
     myProducts = JSON.parse(cart);
     myProducts.forEach(mp => {
-        console.log(mp.name, mp.color);
         productArray = getInfosIncartByName(mp.name, mp.color);
     });
     
