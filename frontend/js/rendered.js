@@ -4,7 +4,8 @@ import {
     addColorToElt,
     showPlural,
     qteProductInCart,
-    getInfosIncartByName
+    getInfosInCartByName,
+    // getQtyOfProductsToCommand
 } from "./utils.js";
 
 // Variables
@@ -14,6 +15,13 @@ let ulElt = document.querySelector('.list-group');
 let card = document.querySelector('.card');
 
 let myProducts = [];
+
+let product = {
+    name: '',
+    qty: 0,
+    price: 0,
+    image: ''
+}
 
 
 /**
@@ -122,24 +130,24 @@ function createProduct(product) {
     let cartElt = '';
 
     cartElt = `
-        <li class="list-group-item d-flex justify-content-between product__item">
+        <li class="list-group-item d-flex justify-content-between product__item bg-primary">
             <div class="d-flex">
                 <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="105" height="70">
                 <p class="fs-6 infos__product mt-1 mb-0">
                     <span id="product-name" class="fw-bold">${product.name}</span> <br>
-                    Prix unitaire : <span id="product-price">${formattedPrice(product.price)}</span> € <br>
-                    <span id="product-color" class="infos__product--color">${product.color}</span>
+                    <span class="d-none d-sm-inline-block">Prix unitaire :</span> <span id="product-price">${formattedPrice(product.price)}</span>€ <br>
+                    <span id="product-color" class="infos__product--color d-block">${product.color}</span>
                 </p>
             </div>
             <div class="infos__product--qte mx-3 py-2">
-                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                <div class="d-flex btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group-sm mr-2 d-block" role="group" aria-label="First group">
                     <button id="btn-moins" type="button" class="btn-cart btn-secondary">-</button>
                     </div>
-                    <div class="input-group-sm product__qte--input">
+                    <div class="input-group-sm product__qte--input d-block">
                     <input id="input-qte" type="text" data-qty=${product.qty} class="form-control" value="${product.qty}">
                     </div>
-                    <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                    <div class="btn-group-sm mr-2 d-block" role="group" aria-label="First group">
                         <button id="btn-plus" type="button" class="btn-cart btn-secondary">+</button>
                     </div>
                 </div>
@@ -208,6 +216,7 @@ function renderInfosOfCartInPage() {
     // Calcul de la quantité de produits du panier
     inputQte.forEach(input => {
         qtyOfProducts += Number(input.value);
+        console.log(qtyOfProducts);
     });
 
     // Affiche la quantité de produit 
@@ -349,16 +358,33 @@ let renderProductsOfCommand = () => {
     let totalCmd = document.querySelector('.total-cmd');
     let productArray;
     let total = 0;
+    let count = 0;
+    
     myProducts = JSON.parse(cart);
+    console.log(myProducts);
     myProducts.forEach(mp => {
-        productArray = getInfosIncartByName(mp.name, mp.color);
+        productArray = getInfosInCartByName(mp.name, mp.color);
     });
+    console.log(productArray);
+    // getQtyOfProductsToCommand(myProducts);
     
     productArray.forEach(pa => {
         li += createElementLiOfCommand(pa);
         total += (pa.price * pa.qty);
+        
     });
 
+    // productArray.forEach(p => {
+    //     console.log(p);
+    //     if (p.name === 'Norbert') {
+    //         count += p.qty;
+    //     }
+        
+    // });
+   
+    // console.log(count);
+
+    
     eltUL.innerHTML = li;
     totalCmd.innerHTML = formattedPrice(total);
 }

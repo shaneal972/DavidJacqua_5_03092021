@@ -9,6 +9,12 @@ let myProducts = JSON.parse(productsInCart);
 let mesProduits = [];
 let qte = 0;
 let arrayOfProduct = [];
+let product = {
+    price: 0,
+    qty: 0,
+    name: '',
+    image: ''
+};
 
 /**
  * Permet de formatter un prix passé en paramètres : Passer de 3900 à 39,00
@@ -30,16 +36,9 @@ function formattedPrice(price) {
  * @param {*} color 
  * @returns {Array} 
  */
-function getInfosIncartByName(name, color) {
-    let product = {
-        price: 0,
-        qty: 0,
-        name: '',
-        image: ''
-    };
-    
+function getInfosInCartByName(name, color) {
     myProducts.forEach(mp => {
-
+        
         if (name === mp.name && color === mp.color) {
             product.price = mp.price;
             product.qty = mp.qty;
@@ -49,9 +48,53 @@ function getInfosIncartByName(name, color) {
     });
 
     arrayOfProduct.push(product);
-
     return arrayOfProduct;
 }
+
+
+/* function getQtyOfProductsToCommand(products) {
+    let count = 0;
+    products.forEach(pa => {
+        switch (pa.name) {
+            case 'Norbert': 
+                if (pa.name) {
+                    count += pa.qty;
+                }
+                product.qty = count;
+                console.log(product)
+                break;
+            case 'Arnold': 
+                if (pa.name) {
+                    count += pa.qty;
+                }
+                product.qty = count;
+                console.log(product)
+                break;
+            case 'Lenny and Carl': 
+                if (pa.name) {
+                    count += pa.qty;
+                }
+                product.qty = count;
+                console.log(product)
+                break;
+            case 'Gustav': 
+                if (pa.name) {
+                    count += pa.qty;
+                }
+                product.qty = count;
+                console.log(product);
+                break;
+            case 'Garfunkel': 
+                if (pa.name) {
+                    count += pa.qty;
+                }
+                product.qty = count;
+                console.log(product)
+                break;
+        }
+    });
+    
+} */
 
 /**
  * Permet de coloré le nom de la couleur du produit par sa couleur 
@@ -64,8 +107,28 @@ function addColorToElt() {
     for (let i = 0; i < spans.length; i++) {
         let namedColor = spans[i].innerHTML;
 
+        if (namedColor == 'Pink') {
+            spans[i].classList.add('bg-pink');
+        }
+
+        if (namedColor == 'Tan') {
+            spans[i].classList.add('bg-tan');
+        }
+
         if (namedColor == 'White') {
-            spans[i].classList.add('bg-dark');
+            spans[i].classList.add('bg-white');
+        }
+
+        if (namedColor == 'Chocolate') {
+            spans[i].classList.add('bg-chocolate');
+        }
+
+        if (namedColor == 'Brown') {
+            spans[i].classList.add('bg-brown');
+        }
+
+        if (namedColor == 'Pale Brown') {
+            spans[i].classList.add('bg-brown');
         }
 
         if (namedColor == 'Beige') {
@@ -74,12 +137,19 @@ function addColorToElt() {
 
         if (namedColor.includes(' ')) {
             namedColor = namedColor.replace(' ', '-').toLowerCase();
+            if (namedColor == 'pale-brown') {
+                spans[i].classList.add('bg-pale-brown');
+            }
+
+            if (namedColor == 'dark-brown') {
+                spans[i].classList.add('bg-dark-brown');
+            }
             spans[i].classList.add(namedColor);
         } else {
             namedColor = namedColor.toLowerCase();
             spans[i].classList.add(namedColor);
         }
-        spans[i].classList.add('bg-primary')
+        // spans[i].classList.add('bg-primary')
     }
 }
 
@@ -313,7 +383,8 @@ function showPlural(qte) {
 
 export {
     formattedPrice,
-    getInfosIncartByName,
+    getInfosInCartByName,
+    // getQtyOfProductsToCommand,
     getSelectedColor,
     productInCart,
     addProductToCart,
