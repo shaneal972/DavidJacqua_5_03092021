@@ -131,7 +131,7 @@ function createProduct(product) {
 
     cartElt = `
         <li class="list-group-item d-flex justify-content-between product__item bg-primary">
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="105" height="70">
                 <p class="fs-6 infos__product mt-1 mb-0">
                     <span id="product-name" class="fw-bold">${product.name}</span> <br>
@@ -216,7 +216,6 @@ function renderInfosOfCartInPage() {
     // Calcul de la quantité de produits du panier
     inputQte.forEach(input => {
         qtyOfProducts += Number(input.value);
-        console.log(qtyOfProducts);
     });
 
     // Affiche la quantité de produit 
@@ -327,19 +326,19 @@ let renderHeadOfCommand = (commande) => {
  * @param {*} product 
  * @returns {HTMLLIElement} Un élément "li"
  */
-let createElementLiOfCommand = (product) => {
+let createElementLiOfCommand = (product, qte) => {
     let li = '';
 
     return li = `
     <li class="list-group-item">
         <div class="d-flex flex-column align-items-center flex-sm-row justify-content-sm-between">
-            <img class="mr-3" src="${product.image}" alt="image d'une peluche" width="55" height="40">
+            <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="55" height="40">
             <p class="fs-6 infos__product mt-1 mb-0">
                 <span class="fw-bold">${product.name}</span> <br>
             </p>
             <div class="infos__product--qte mx-3 py-2">
                 <div class="">
-                    Quantité : <span id="product-qte">${product.qty}</span>
+                    Quantité : <span id="product-qte">${qte}</span>
                 </div>
             </div>
             <div class="py-2 mx-2 info-product-price">
@@ -352,38 +351,40 @@ let createElementLiOfCommand = (product) => {
 /**
  * Permet d'afficher les produits lors du résumé de la commande
  */
-let renderProductsOfCommand = () => {
+let renderProductsOfCommand = (commande) => {
     let li = '';
     let eltUL = document.querySelector('.list-group');
     let totalCmd = document.querySelector('.total-cmd');
-    let productArray;
+    let infosProduct = document.querySelector('.infos__product');
+    let name = '';
     let total = 0;
-    let count = 0;
-    
+    let qte = 0;
+    let color = '';
+         
     myProducts = JSON.parse(cart);
-    console.log(myProducts);
-    myProducts.forEach(mp => {
-        productArray = getInfosInCartByName(mp.name, mp.color);
-    });
-    console.log(productArray);
-    // getQtyOfProductsToCommand(myProducts);
-    
-    productArray.forEach(pa => {
-        li += createElementLiOfCommand(pa);
-        total += (pa.price * pa.qty);
-        
-    });
-
-    // productArray.forEach(p => {
-    //     console.log(p);
-    //     if (p.name === 'Norbert') {
-    //         count += p.qty;
-    //     }
-        
+    // myProducts.forEach(mp => {
+    //     console.log(mp.name, mp.color);
+    //     productArray = getInfosInCartByName(mp.name, mp.color);
     // });
-   
-    // console.log(count);
-
+    console.log(commande);
+    for (const mp of myProducts) {
+        qte += mp.qty;
+    }
+    console.log(qte);
+    commande[0].products.forEach(prod => {
+        // name = prod.name;
+        myProducts.forEach(el => {
+            
+                qte = el.qty;
+                color = el.color;
+                color = color.replace(' ', '-').toLowerCase();
+        })
+        
+        
+        li += createElementLiOfCommand(prod);
+        total += (prod.price * qte);
+    });
+    
     
     eltUL.innerHTML = li;
     totalCmd.innerHTML = formattedPrice(total);
@@ -395,6 +396,7 @@ export {
     renderOneTeddie,
     renderCart,
     createProduct,
+    createElementLiOfCommand,
     renderPriceCartByQty,
     renderInfosOfCartInPage,
     renderQtyOfProduct,

@@ -8,13 +8,7 @@ let productsInCart = localStorage.getItem('panier');
 let myProducts = JSON.parse(productsInCart);
 let mesProduits = [];
 let qte = 0;
-let arrayOfProduct = [];
-let product = {
-    price: 0,
-    qty: 0,
-    name: '',
-    image: ''
-};
+
 
 /**
  * Permet de formatter un prix passé en paramètres : Passer de 3900 à 39,00
@@ -32,69 +26,34 @@ function formattedPrice(price) {
 
 /**
  * Permet de récupérer des informations du panier
- * @param {*} name 
- * @param {*} color 
  * @returns {Array} 
  */
-function getInfosInCartByName(name, color) {
+ function getInfosInCartByName(name, color) {
+    let product = {
+        price: 0,
+        qte: 0,
+        name: '',
+        image: ''
+     };
+     let arrayOfProduct = new Array();
+
+    console.log(myProducts);
     myProducts.forEach(mp => {
-        
+        console.log(mp.name, mp.color);
         if (name === mp.name && color === mp.color) {
             product.price = mp.price;
-            product.qty = mp.qty;
+            product.qte = mp.qty;
             product.name = mp.name;
             product.image = mp.imageUrl;
+            arrayOfProduct.push(product);
         }
     });
+    
 
-    arrayOfProduct.push(product);
     return arrayOfProduct;
 }
 
 
-/* function getQtyOfProductsToCommand(products) {
-    let count = 0;
-    products.forEach(pa => {
-        switch (pa.name) {
-            case 'Norbert': 
-                if (pa.name) {
-                    count += pa.qty;
-                }
-                product.qty = count;
-                console.log(product)
-                break;
-            case 'Arnold': 
-                if (pa.name) {
-                    count += pa.qty;
-                }
-                product.qty = count;
-                console.log(product)
-                break;
-            case 'Lenny and Carl': 
-                if (pa.name) {
-                    count += pa.qty;
-                }
-                product.qty = count;
-                console.log(product)
-                break;
-            case 'Gustav': 
-                if (pa.name) {
-                    count += pa.qty;
-                }
-                product.qty = count;
-                console.log(product);
-                break;
-            case 'Garfunkel': 
-                if (pa.name) {
-                    count += pa.qty;
-                }
-                product.qty = count;
-                console.log(product)
-                break;
-        }
-    });
-    
-} */
 
 /**
  * Permet de coloré le nom de la couleur du produit par sa couleur 
@@ -199,6 +158,7 @@ function addProductToCart(product) {
         console.log(productsInCart);
         // Vérifier si le produit à ajouter est déjà dans le panier
         let inCart = productInCart(product);
+        console.log(inCart);
         if (inCart === true) {
             for (const p of myProducts) {
                 console.log(myProducts);
@@ -212,8 +172,9 @@ function addProductToCart(product) {
             localStorage.setItem('panier', JSON.stringify(myProducts));
         };
         if (inCart === false) {
-            mesProduits.push(product);
-            localStorage.setItem('panier', JSON.stringify(mesProduits));
+            myProducts.push(product);
+            console.log(myProducts);
+            localStorage.setItem('panier', JSON.stringify(myProducts));
         }
     } else {
         // Ajout du produit (product) dans myProducts[]
@@ -317,7 +278,7 @@ function updateCartAfterQtyChange(products) {
  * @param {HTMLLIElement} elts 
  */
 function productQtyChange(elts) {
-    let product;
+    let product = [];
     let input;
     elts.forEach(li => {
         li.addEventListener('click', function (event) {
@@ -330,7 +291,7 @@ function productQtyChange(elts) {
                 renderPriceCartByQty(qte, li);
                 // Récupère informations du produit
                 product = getInfosOfProductInCartPage(li);
-                updateCartAfterQtyChange(Array(product));
+                updateCartAfterQtyChange(product);
                 renderInfosOfCartInPage();
             }
             if (event.target.innerHTML === '-') {
@@ -342,7 +303,7 @@ function productQtyChange(elts) {
                 renderPriceCartByQty(qte, li);
                 // Récupère informations du produit
                 product = getInfosOfProductInCartPage(li);
-                updateCartAfterQtyChange(Array(product));
+                updateCartAfterQtyChange(product);
                 
                 if (qte < 0 || qte === NaN) {
                     qte = 1;

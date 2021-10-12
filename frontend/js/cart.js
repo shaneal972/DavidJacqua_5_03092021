@@ -49,7 +49,7 @@ window.onload = function () {
     
     
     btnCmd.addEventListener('click', function (event) {
-        // event.preventDefault();
+        event.preventDefault();
         let validForm;
         
 
@@ -58,6 +58,7 @@ window.onload = function () {
         let validAddress = validate(address, 2, "L'adresse ne doit pas être vide et doit être supérieur à 2 caractères");
         let validCity = validate(city, 3, "La ville ne doit pas être vide et doit être supérieur à 2 caractères");
         let validEmail = validate(email, 4, "");
+        console.log(validFirstName,validLastName,validAddress,validCity,validEmail);
 
         if (
             validFirstName === true &&
@@ -78,23 +79,21 @@ window.onload = function () {
             
             //On récupère le tableau d'id du panier 🛍  
             let produits = JSON.parse(localStorage.getItem('panier'));
-
             //On met les id du panier dans le tableau products
             produits.forEach(p => {
                 products.push(p._id);
             });
-
+            console.log(products);
             //Envoi des informations du client et du panier au serveur en méthode POST
             postCommand(contact, products);
         } else {
             validForm = false;
         }
 
-        if (validForm === false) {
-            location.href = "#";
-        } else {
-            location.href = "./commande.html"
-        }
-        
-    })
+        // if (validForm === true) {
+        //     location.href = './commande/html';
+        // } else {
+        //     location.href = '#';
+        // }
+    });
 }

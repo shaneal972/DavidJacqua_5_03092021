@@ -50,7 +50,6 @@ async function getOneTeddie(_id) {
  * @param {Array} products Tableau des id du panier
  */
 const postCommand = async (contact, products) => {
-    console.log("entrée");
     try {
         const urlPost = URL_API + 'order';
         const response = await fetch(urlPost, {

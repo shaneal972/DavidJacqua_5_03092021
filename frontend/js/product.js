@@ -45,15 +45,15 @@ window.onload = async function () {
     let btnAdd = document.querySelector('#btn-add');
     
     renderQtyOfProduct();
-    
+    console.log(teddie);
     // Ajout d'un évènement click sur le bouton "AJOUTER AU PANIER"
     btnAdd.addEventListener('click', function (event) {
-
+        // event.preventDefault();
         // Récupérer les informations du produit à ajouter au panier
         let color = getSelectedColor();
         teddie.color = color;
         teddie.qty = 1
-
+        
         addProductToCart(teddie);
     });
 
