@@ -279,10 +279,13 @@ let Now = () => {
 let renderHeadOfCommand = (commande) => {
     
     let cmdElt = '';
-    commande[0].products.forEach(p => {
-        myProducts.push(p);
-    }); 
-    
+    if (commande !== null) {
+        commande[0].products.forEach(p => {
+            myProducts.push(p);
+        }); 
+    } else {
+        console.log('votre commande est vide');
+    }
     cmdElt += `
         <div class="card-body">
             <h5 class="card-title text-center">N° commande : </h5>
@@ -326,7 +329,7 @@ let renderHeadOfCommand = (commande) => {
  * @param {*} product 
  * @returns {HTMLLIElement} Un élément "li"
  */
-let createElementLiOfCommand = (product, qte) => {
+let createElementLiOfCommand = (product) => {
     let li = '';
 
     return li = `
@@ -336,11 +339,6 @@ let createElementLiOfCommand = (product, qte) => {
             <p class="fs-6 infos__product mt-1 mb-0">
                 <span class="fw-bold">${product.name}</span> <br>
             </p>
-            <div class="infos__product--qte mx-3 py-2">
-                <div class="">
-                    Quantité : <span id="product-qte">${qte}</span>
-                </div>
-            </div>
             <div class="py-2 mx-2 info-product-price">
                 <span>PU : ${formattedPrice(product.price)}</span><span class="d-none d-sm-inline"> €</span> 
             </div>
@@ -362,29 +360,15 @@ let renderProductsOfCommand = (commande) => {
     let color = '';
          
     myProducts = JSON.parse(cart);
-    // myProducts.forEach(mp => {
-    //     console.log(mp.name, mp.color);
-    //     productArray = getInfosInCartByName(mp.name, mp.color);
-    // });
-    console.log(commande);
+   
     for (const mp of myProducts) {
         qte += mp.qty;
     }
-    console.log(qte);
-    commande[0].products.forEach(prod => {
-        // name = prod.name;
-        myProducts.forEach(el => {
-            
-                qte = el.qty;
-                color = el.color;
-                color = color.replace(' ', '-').toLowerCase();
-        })
-        
-        
+   
+    commande[0].products.forEach(prod => {        
         li += createElementLiOfCommand(prod);
-        total += (prod.price * qte);
-    });
-    
+        total += prod.price;
+    });    
     
     eltUL.innerHTML = li;
     totalCmd.innerHTML = formattedPrice(total);

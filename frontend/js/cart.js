@@ -1,10 +1,8 @@
 import { renderCart, renderInfosOfCartInPage } from "./rendered.js";
-import { validate, id, classes } from "./form.js";
+import { validate, id } from "./form.js";
 import { postCommand } from "./api.js";
 import {
     deleteProduct,
-    deleteProductWhenInputChange,
-    formattedPrice,
     productQtyChange
 } from "./utils.js";
 
@@ -19,7 +17,6 @@ window.onload = function () {
     let mesProduits = [];
     let liElts = document.querySelectorAll('.product__item');
     let btnCmd = id('btn-cmd');
-    let commande = {};
     let products = [];
 
 
@@ -49,9 +46,6 @@ window.onload = function () {
     
     
     btnCmd.addEventListener('click', function (event) {
-        event.preventDefault();
-        let validForm;
-        
 
         let validFirstName = validate(firstname, 0, "Le prénom ne doit pas être vide et doit être supérieur à 2 caractères");
         let validLastName = validate(lastname, 1, "Le nom ne doit pas être vide et doit être supérieur à 2 caractères");
@@ -67,7 +61,6 @@ window.onload = function () {
             validCity === true &&
             validEmail === true
         ) {
-            validForm = true;
             //On crée l'objet contact 😅 
             let contact = {
                 firstName: firstname.value,
@@ -77,23 +70,14 @@ window.onload = function () {
                 email: email.value,
             }
             
-            //On récupère le tableau d'id du panier 🛍  
-            let produits = JSON.parse(localStorage.getItem('panier'));
             //On met les id du panier dans le tableau products
-            produits.forEach(p => {
+            mesProduits.forEach(p => {
                 products.push(p._id);
             });
-            console.log(products);
             //Envoi des informations du client et du panier au serveur en méthode POST
             postCommand(contact, products);
         } else {
-            validForm = false;
+            event.preventDefault();
         }
-
-        // if (validForm === true) {
-        //     location.href = './commande/html';
-        // } else {
-        //     location.href = '#';
-        // }
     });
 }

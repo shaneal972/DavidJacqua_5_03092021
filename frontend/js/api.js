@@ -64,7 +64,6 @@ const postCommand = async (contact, products) => {
             })
         });
         const data = await response.json();
-        console.log(data);
         //Retourne les informations du serveur après le post
         commande = {
             'contact': data.contact,

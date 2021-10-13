@@ -1,4 +1,4 @@
-import { renderQtyOfProduct, renderHeadOfCommand, renderProductsOfCommand, createElementLiOfCommand } from './rendered.js';
+import { renderQtyOfProduct, renderHeadOfCommand, renderProductsOfCommand } from './rendered.js';
 
 let numeroCmd = document.querySelector('.num-cmd');
 let totalCmd = document.querySelector('.toal-cmd');
@@ -7,7 +7,8 @@ let commande = localStorage.getItem('commande');
 let panier = localStorage.getItem('panier');
 let monPanier = [];
 
-if (commande !== null) {        
+if (commande !== null) {
+    // console.log(commande);
     maCommande.push(JSON.parse(commande));
 }
 
@@ -15,19 +16,17 @@ if (panier !== null) {
     monPanier.push(JSON.parse(panier));
 }
 
-renderHeadOfCommand(maCommande);
+// console.log(maCommande);
+if (maCommande.length > 0) {
+    renderHeadOfCommand(maCommande);
+}
 
 window.onload = () => {
-    let li = '';
-    let total = 0;
-    let color = '';
-    let eltUL = document.querySelector('.list-group');
-    let totalCmd = document.querySelector('.total-cmd');
 
     renderQtyOfProduct();    
 
-    numeroCmd.innerHTML = maCommande[0].orderId;
-    renderProductsOfCommand(maCommande);
-
-   
+    if (maCommande.length > 0) {
+        numeroCmd.innerHTML = maCommande[0].orderId;
+        renderProductsOfCommand(maCommande);
+    }
 }
