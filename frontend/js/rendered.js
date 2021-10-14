@@ -43,7 +43,7 @@ let product = {
                             width="275"
                             height="202"
                         >
-                    <a href="./product.html?id=${teddie._id}" class="btn my-3">
+                    <a href="./product.html?id=${teddie._id}" class="btn btn-outline-dark my-3">
                         Plus d'infos
                     </a>
                     </div>
@@ -112,7 +112,7 @@ let product = {
                 </div>
             </div>
             <div class="col-12 col-md-12 d-flex justify-content-center">
-                <a id="btn-add" href="./cart.html" class="btn product__item--btn my-3">
+                <a id="btn-add" href="./cart.html" class="btn btn-outline-dark product__item--btn my-3">
                     <span class="fs-5">Ajouter au panier</span> 
                 </a>
             </div>
@@ -279,13 +279,7 @@ let Now = () => {
 let renderHeadOfCommand = (commande) => {
     
     let cmdElt = '';
-    if (commande !== null) {
-        commande[0].products.forEach(p => {
-            myProducts.push(p);
-        }); 
-    } else {
-        console.log('votre commande est vide');
-    }
+  
     cmdElt += `
         <div class="card-body">
             <h5 class="card-title text-center">N° commande : </h5>
@@ -311,14 +305,7 @@ let renderHeadOfCommand = (commande) => {
             </div>
         </div>
         <ul class="list-group list-group-flush px-1">
-        </ul>
-        <div class="card-body">
-            <p class="text-end">
-                Total : 
-                <span class="total-cmd text-danger fw-bold fs-3"></span>
-                <span class="text-danger fw-bold fs-3"> € </span>
-            </p>
-        </div>`;
+        </ul>`;
     
     card.innerHTML = cmdElt;
 
@@ -346,33 +333,45 @@ let createElementLiOfCommand = (product) => {
     </li>`;
 }
 
-/**
- * Permet d'afficher les produits lors du résumé de la commande
- */
-let renderProductsOfCommand = (commande) => {
-    let li = '';
-    let eltUL = document.querySelector('.list-group');
-    let totalCmd = document.querySelector('.total-cmd');
-    let infosProduct = document.querySelector('.infos__product');
-    let name = '';
+let renderBodyOfCommand = () => {
+    let quantites = [];
+    let prices = [];
+    let bodyCardElt = '';
+    let bodyOfCard = document.querySelector('#body-of-card');
+    let totalQte = 0;
     let total = 0;
-    let qte = 0;
-    let color = '';
-         
+
     myProducts = JSON.parse(cart);
-   
-    for (const mp of myProducts) {
-        qte += mp.qty;
+    myProducts.forEach(mp => {
+        quantites.push(mp.qty);
+        prices.push(mp.price);
+    })
+
+    let i = 0;
+    while (i < quantites.length) {
+        total += (quantites[i] * prices[i]);
+        totalQte += quantites[i];
+        i++;
     }
-   
-    commande[0].products.forEach(prod => {        
-        li += createElementLiOfCommand(prod);
-        total += prod.price;
-    });    
+
+    bodyCardElt += `
+        <div class="card-body">
+            <p class="card-text info-qte-commande">
+                Votre commande contenait <span id="qte">${totalQte}</span> produits. Vous trouverez 
+                le montant total ci-dessous.
+            </p>
+            <p class="text-end">
+                Total : 
+                <span class="total-cmd text-danger fw-bold fs-3">${formattedPrice(total)}</span>
+                <span class="text-danger fw-bold fs-3"> € </span>
+            </p>
+        </div>`;
     
-    eltUL.innerHTML = li;
-    totalCmd.innerHTML = formattedPrice(total);
+
+    // eltUL.innerHTML = li;
+    bodyOfCard.innerHTML = bodyCardElt;
 }
+
 
 export {
     renderTeddies,
@@ -385,5 +384,5 @@ export {
     renderInfosOfCartInPage,
     renderQtyOfProduct,
     renderHeadOfCommand,
-    renderProductsOfCommand
+    renderBodyOfCommand
 };

@@ -173,7 +173,6 @@ function addProductToCart(product) {
         };
         if (inCart === false) {
             myProducts.push(product);
-            console.log(myProducts);
             localStorage.setItem('panier', JSON.stringify(myProducts));
         }
     } else {

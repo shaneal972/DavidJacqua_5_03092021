@@ -1,4 +1,8 @@
-import { renderQtyOfProduct, renderHeadOfCommand, renderProductsOfCommand } from './rendered.js';
+import {
+    renderQtyOfProduct,
+    renderHeadOfCommand,
+    renderBodyOfCommand
+} from './rendered.js';
 
 let numeroCmd = document.querySelector('.num-cmd');
 let totalCmd = document.querySelector('.toal-cmd');
@@ -27,6 +31,6 @@ window.onload = () => {
 
     if (maCommande.length > 0) {
         numeroCmd.innerHTML = maCommande[0].orderId;
-        renderProductsOfCommand(maCommande);
+        renderBodyOfCommand();
     }
 }
