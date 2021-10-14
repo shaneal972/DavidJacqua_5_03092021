@@ -108,7 +108,6 @@ function addColorToElt() {
             namedColor = namedColor.toLowerCase();
             spans[i].classList.add(namedColor);
         }
-        // spans[i].classList.add('bg-primary')
     }
 }
 
@@ -158,7 +157,7 @@ function addProductToCart(product) {
         console.log(productsInCart);
         // Vérifier si le produit à ajouter est déjà dans le panier
         let inCart = productInCart(product);
-        console.log(inCart);
+
         if (inCart === true) {
             for (const p of myProducts) {
                 console.log(myProducts);
@@ -171,6 +170,7 @@ function addProductToCart(product) {
             // Mise à jour du panier dans le localStorage
             localStorage.setItem('panier', JSON.stringify(myProducts));
         };
+
         if (inCart === false) {
             myProducts.push(product);
             localStorage.setItem('panier', JSON.stringify(myProducts));
@@ -257,7 +257,6 @@ function updateCartAfterQtyChange(products) {
 /**
  * Permet de supprimer un élément de la liste d'affichage des produits
  * sur la page cart.html lorsque la quantité du produit est 0
- * et met à jour le panier du Storage
  * @param {HTMLInputElement} input
  */
  function deleteProductWhenInputChange(input) {

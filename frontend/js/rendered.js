@@ -3,9 +3,7 @@ import {
     formattedPrice,
     addColorToElt,
     showPlural,
-    qteProductInCart,
-    getInfosInCartByName,
-    // getQtyOfProductsToCommand
+    qteProductInCart
 } from "./utils.js";
 
 // Variables
@@ -15,13 +13,6 @@ let ulElt = document.querySelector('.list-group');
 let card = document.querySelector('.card');
 
 let myProducts = [];
-
-let product = {
-    name: '',
-    qty: 0,
-    price: 0,
-    image: ''
-}
 
 
 /**
@@ -312,28 +303,10 @@ let renderHeadOfCommand = (commande) => {
 }
 
 /**
- * Permet de créer un élémént "li"
- * @param {*} product 
- * @returns {HTMLLIElement} Un élément "li"
+ * Permet de rendre (d'afficher) le corps d'une commande
  */
-let createElementLiOfCommand = (product) => {
-    let li = '';
-
-    return li = `
-    <li class="list-group-item">
-        <div class="d-flex flex-column align-items-center flex-sm-row justify-content-sm-between">
-            <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="55" height="40">
-            <p class="fs-6 infos__product mt-1 mb-0">
-                <span class="fw-bold">${product.name}</span> <br>
-            </p>
-            <div class="py-2 mx-2 info-product-price">
-                <span>PU : ${formattedPrice(product.price)}</span><span class="d-none d-sm-inline"> €</span> 
-            </div>
-        </div>
-    </li>`;
-}
-
 let renderBodyOfCommand = () => {
+    //Variables
     let quantites = [];
     let prices = [];
     let bodyCardElt = '';
@@ -341,12 +314,14 @@ let renderBodyOfCommand = () => {
     let totalQte = 0;
     let total = 0;
 
+    //Récupération des quantités et des prix du panier
     myProducts = JSON.parse(cart);
     myProducts.forEach(mp => {
         quantites.push(mp.qty);
         prices.push(mp.price);
-    })
+    });
 
+    //Calcul de la quantité de produit et du prix total
     let i = 0;
     while (i < quantites.length) {
         total += (quantites[i] * prices[i]);
@@ -354,6 +329,7 @@ let renderBodyOfCommand = () => {
         i++;
     }
 
+    //Création de l'élément à afficher dans l'HTML
     bodyCardElt += `
         <div class="card-body">
             <p class="card-text info-qte-commande">
@@ -365,10 +341,9 @@ let renderBodyOfCommand = () => {
                 <span class="total-cmd text-danger fw-bold fs-3">${formattedPrice(total)}</span>
                 <span class="text-danger fw-bold fs-3"> € </span>
             </p>
-        </div>`;
-    
+        </div>`;    
 
-    // eltUL.innerHTML = li;
+    // Insertion de l'elt dans la page commande.html
     bodyOfCard.innerHTML = bodyCardElt;
 }
 
@@ -379,7 +354,6 @@ export {
     renderOneTeddie,
     renderCart,
     createProduct,
-    createElementLiOfCommand,
     renderPriceCartByQty,
     renderInfosOfCartInPage,
     renderQtyOfProduct,
