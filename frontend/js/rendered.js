@@ -10,7 +10,7 @@ import {
 let divProducts = document.querySelector('#products');
 let cart = localStorage.getItem('panier');
 let ulElt = document.querySelector('.list-group');
-let card = document.querySelector('.card');
+let headerCmd = document.querySelector('#header-command');
 
 let myProducts = [];
 
@@ -298,7 +298,7 @@ let renderHeadOfCommand = (commande) => {
         <ul class="list-group list-group-flush px-1">
         </ul>`;
     
-    card.innerHTML = cmdElt;
+        headerCmd.innerHTML = cmdElt;
 
 }
 
@@ -333,7 +333,7 @@ let renderBodyOfCommand = () => {
     bodyCardElt += `
         <div class="card-body">
             <p class="card-text info-qte-commande">
-                Votre commande contenait <span id="qte">${totalQte}</span> produits. Vous trouverez 
+                Votre commande contenait <span class="text-info" id="qte">${totalQte}</span> produits. Vous trouverez 
                 le montant total ci-dessous.
             </p>
             <p class="text-end">

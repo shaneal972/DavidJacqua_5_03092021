@@ -11,7 +11,7 @@ let commande = localStorage.getItem('commande');
 if (commande !== null) {
     maCommande.push(JSON.parse(commande));
 };
-
+console.log(maCommande);
 if (maCommande.length > 0) {
     renderHeadOfCommand(maCommande);
 };
