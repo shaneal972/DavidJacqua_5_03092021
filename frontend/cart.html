@@ -69,8 +69,80 @@
         </nav><!-- Fin nav-->
         <main class="row">
             <section class="main__item cart__info p-2">
+                <h1 class="text-uppercase fs-5">Votre panier</h1>
+                <!-- Articles choisis par l'utilisateur-->
+                <div class="row flex-md-column flex-lg-row"> 
+                    <div class=" col col-md col-lg-7 mb-3">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <img class="mr-3" src="https://picsum.photos/105/70" alt="image d'une peluche">
+                                        <p class="fs-6 infos__product mt-1 mb-0">
+                                            <span class="fw-bold">Norbert</span> <br>
+                                            Prix : 29€ <br>
+                                            Couleur : <span id="product-color" class="infos__product--color">Tan</span>
+                                        </p>
+                                    </div>
+                                    <div class="infos__product--qte mx-3 py-2">
+                                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                                                <button type="button" class="btn-cart btn-secondary">-</button>
+                                            </div>
+                                            <div class="input-group-sm product__qte--input">
+                                                <input type="text" class="form-control" value="1">
+                                            </div>
+                                            <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
+                                                <button type="button" class="btn-cart btn-secondary">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="py-2 mx-2 info-product-price">
+                                        <span>29,00</span><span class="d-none d-sm-inline"> €</span> 
+                                    </div>
+                                    <p class="py-2 product__delete" title="supprimer l'article">
+                                        X
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="./index.html" type="button" class="btn btn-outline-dark btn-lg mt-3 fs-6">
+                            adopte un autre
+                        </a>
+                    </div>
+                    <div class=" col col-md col-lg">
+                        <ul class="list-group cart">
+                            <li class="list-group-item cart__item aside-cart">
+                                <div class="cart__item--resume row border-bottom border-dark mt-2">
+                                    <p class="w-50">
+                                        <span>Panier</span>(<span id="nb-total-product-in-cart" class="cart__item--nbproduct nb-product">1</span>) 
+                                    </p>
+                                    <p class="w-50 d-flex justify-content-end cart__item--priceofproduct">
+                                        <span id="price-total-of-product"></span><span>&nbsp;€</span>
+                                    </p>
+                                </div>
+                                <div class="cart__item--tax row border-bottom border-dark mt-2">
+                                    <p class="w-50">
+                                        <span>Livraison</span>
+                                    </p>
+                                    <p class="w-50 d-flex justify-content-end">
+                                        <span id="ship-price">gratuit</span>
+                                    </p>
+                                </div>
+                                <div class="cart__item--total row mt-2">
+                                    <p class="w-50 mb-0">
+                                        <span>Total</span>
+                                    </p>
+                                    <p class="cart__item--total-price w-50 mb-0 d-flex justify-content-end">
+                                        <span id="price-total-of-cart"></span><span>&nbsp;€</span>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <p class="text-uppercase fs-5">Vos informations</p>
-                <form class="row g-3 m-3 pb-3" id="infos-user">
+                <form class="row g-3 m-3 pb-3" id="infos-user" action="./commande.html">
                     <div class="col-md-6">
                         <label for="firstname" class="form-label">Prénom</label>
                         <input type="text" class="form-control" 
@@ -120,84 +192,10 @@
                         >
                         <div class="error alert alert-danger"></div>
                     </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <button type="submit" id="btn-cmd" class="btn btn-outline-dark">Commander</button> 
+                    </div>
                 </form>
-                <h1 class="text-uppercase fs-5">Votre panier</h1>
-                <!-- Articles choisis par l'utilisateur-->
-                <div class="row flex-md-column flex-lg-row"> 
-                    <div class=" col col-md col-lg-7 mb-3">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <div class="d-flex">
-                                        <img class="mr-3" src="https://picsum.photos/105/70" alt="image d'une peluche">
-                                        <p class="fs-6 infos__product mt-1 mb-0">
-                                            <span class="fw-bold">Norbert</span> <br>
-                                            Prix : 29€ <br>
-                                            Couleur : <span id="product-color" class="infos__product--color">Tan</span>
-                                        </p>
-                                    </div>
-                                    <div class="infos__product--qte mx-3 py-2">
-                                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                                            <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
-                                              <button type="button" class="btn-cart btn-secondary">-</button>
-                                            </div>
-                                            <div class="input-group-sm product__qte--input">
-                                              <input type="text" class="form-control" value="1">
-                                            </div>
-                                            <div class="btn-group-sm mr-2 d-none d-sm-block" role="group" aria-label="First group">
-                                                <button type="button" class="btn-cart btn-secondary">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="py-2 mx-2 info-product-price">
-                                        <span>29,00</span><span class="d-none d-sm-inline"> €</span> 
-                                    </div>
-                                    <p class="py-2 product__delete" title="supprimer l'article">
-                                       X
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="./index.html" type="button" class="btn btn-outline-dark btn-lg mt-3 fs-6">
-                            adopte un autre
-                        </a>
-                    </div>
-                    <div class=" col col-md col-lg">
-                        <ul class="list-group cart">
-                            <li class="list-group-item cart__item aside-cart">
-                                <div class="cart__item--resume row border-bottom border-dark mt-2">
-                                    <p class="w-50">
-                                        <span>Panier</span>(<span id="nb-total-product-in-cart" class="cart__item--nbproduct nb-product">1</span>) 
-                                    </p>
-                                    <p class="w-50 d-flex justify-content-end cart__item--priceofproduct">
-                                        <span id="price-total-of-product"></span><span>&nbsp;€</span>
-                                    </p>
-                                </div>
-                                <div class="cart__item--tax row border-bottom border-dark mt-2">
-                                    <p class="w-50">
-                                        <span>Livraison</span>
-                                    </p>
-                                    <p class="w-50 d-flex justify-content-end">
-                                        <span id="ship-price">gratuit</span>
-                                    </p>
-                                </div>
-                                <div class="cart__item--total row mt-2">
-                                    <p class="w-50 mb-0">
-                                        <span>Total</span>
-                                    </p>
-                                    <p class="cart__item--total-price w-50 mb-0 d-flex justify-content-end">
-                                        <span id="price-total-of-cart"></span><span>&nbsp;€</span>
-                                    </p>
-                                </div>
-                                <div class="cart__item-btn row mb-3 mt-4 justify-content-center">
-                                    <a href="./commande.html" class="col-md-6">
-                                        <button type="submit" id="btn-cmd" class="btn btn-outline-dark">Commander</button> 
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </section>
         </main>
         <footer class="row mt-3">

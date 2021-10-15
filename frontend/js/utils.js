@@ -65,33 +65,27 @@ function addColorToElt() {
 
     for (let i = 0; i < spans.length; i++) {
         let namedColor = spans[i].innerHTML;
-
-        if (namedColor == 'Pink') {
-            spans[i].classList.add('bg-pink');
-        }
-
-        if (namedColor == 'Tan') {
-            spans[i].classList.add('bg-tan');
-        }
-
-        if (namedColor == 'White') {
-            spans[i].classList.add('bg-white');
-        }
-
-        if (namedColor == 'Chocolate') {
-            spans[i].classList.add('bg-chocolate');
-        }
-
-        if (namedColor == 'Brown') {
-            spans[i].classList.add('bg-brown');
-        }
-
-        if (namedColor == 'Pale Brown') {
-            spans[i].classList.add('bg-brown');
-        }
-
-        if (namedColor == 'Beige') {
-            spans[i].classList.add('bg-dark-beige');
+        console.log('color','#'+namedColor+'#');
+        switch (namedColor) {
+        
+            case 'Pink':
+                spans[i].classList.add('bg-pink');
+                break;
+            case 'Tan':
+                spans[i].classList.add('bg-tan');
+                break;
+            case 'White':
+                spans[i].classList.add('bg-white');
+                break;
+            case 'Chocolate':
+                spans[i].classList.add('bg-chocolate');
+                break;
+            case 'Brown':
+                spans[i].classList.add('bg-brown');
+                break;
+            case 'Beige':
+                spans[i].classList.add('bg-dark-beige');
+                break;
         }
 
         if (namedColor.includes(' ')) {

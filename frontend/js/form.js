@@ -25,7 +25,7 @@ let errorMsg = classes("error");
  * @returns {Boolean} valid
  */
 let validate = (id, serial, message) => {
-    let valid;
+    let valid = false;
     if (id.value.trim() === "" || id.value.trim().length < 2) {
         errorMsg[serial].style.display = "block";
         errorMsg[serial].innerHTML = message;
@@ -61,21 +61,21 @@ let validate = (id, serial, message) => {
         }
     }
 
-    if ((id.getAttribute('id') === 'firstname') || (id.getAttribute('id') === 'lastname')) {
+    // if ((id.getAttribute('id') === 'firstname') || (id.getAttribute('id') === 'lastname')) {
        
-        // On vérifie que la valeur entrée vérifie la Regex de validation.
-        if (id.value.match(/^[a-zà-ï-]+$/gi)) {
-            errorMsg[serial].innerHTML = "";
-            id.style.border = "2px solid green";
-            errorMsg[serial].style.display = "none";
-            valid = true;
-        } else {
-            errorMsg[serial].style.display = "block";
-            errorMsg[serial].innerHTML = "Ce champ ne doit pas contenir de nombre, merci de le retaper";
-            id.style.border = "2px solid red";
-            valid = false;
-        }
-    }
+    //     // On vérifie que la valeur entrée vérifie la Regex de validation.
+    //     if (id.value.match(/^[a-zà-ï-]+$/gi)) {
+    //         errorMsg[serial].innerHTML = "";
+    //         id.style.border = "2px solid green";
+    //         errorMsg[serial].style.display = "none";
+    //         valid = true;
+    //     } else {
+    //         errorMsg[serial].style.display = "block";
+    //         errorMsg[serial].innerHTML = "Ce champ ne doit pas contenir de nombre, merci de le retaper";
+    //         id.style.border = "2px solid red";
+    //         valid = false;
+    //     }
+    // }
     return valid;
 }
 

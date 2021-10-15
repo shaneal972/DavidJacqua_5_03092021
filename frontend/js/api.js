@@ -52,12 +52,13 @@ async function getOneTeddie(_id) {
 const postCommand = async (contact, products) => {
     console.log('entrée');
     try {
+        console.log('try');
         const urlPost = URL_API + 'order';
         const response = await fetch(urlPost, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 contact: contact,
@@ -71,12 +72,13 @@ const postCommand = async (contact, products) => {
             'orderId': data.orderId,
             'products': data.products
         };
-        // Stocke le retour du serveur dans le Storage
-        localStorage.setItem('commande', JSON.stringify(commande));
-        console.log('fin ');
-    } catch(error) {
+    } catch (error) {
         erreur.innerHTML = error;
-    } 
+        erreur.style.display = 'block';
+    }
+    // Stocke le retour du serveur dans le Storage
+    localStorage.setItem('commande', JSON.stringify(commande));
+    console.log('fin ');
 }
 
 

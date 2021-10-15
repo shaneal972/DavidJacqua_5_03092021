@@ -123,7 +123,7 @@ function createProduct(product) {
     cartElt = `
         <li class="list-group-item d-flex justify-content-between product__item bg-primary">
             <div class="d-flex align-items-center">
-                <img class="mr-3" src="${product.imageUrl}" alt="image d'une peluche" width="105" height="70">
+                <img class="mr-3 d-none d-sm-block" src="${product.imageUrl}" alt="image d'une peluche" width="105" height="70">
                 <p class="fs-6 infos__product mt-1 mb-0">
                     <span id="product-name" class="fw-bold">${product.name}</span> <br>
                     <span class="d-none d-sm-inline-block">Prix unitaire :</span> <span id="product-price">${formattedPrice(product.price)}</span>€ <br>
