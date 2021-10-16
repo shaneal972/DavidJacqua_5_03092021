@@ -37,9 +37,7 @@ function formattedPrice(price) {
      };
      let arrayOfProduct = new Array();
 
-    console.log(myProducts);
     myProducts.forEach(mp => {
-        console.log(mp.name, mp.color);
         if (name === mp.name && color === mp.color) {
             product.price = mp.price;
             product.qte = mp.qty;
@@ -61,11 +59,10 @@ function formattedPrice(price) {
 function addColorToElt() {
 
     let spans = document.querySelectorAll("#product-color");
-    // let namedColor = '';
 
     for (let i = 0; i < spans.length; i++) {
+
         let namedColor = spans[i].innerHTML;
-        console.log('color','#'+namedColor+'#');
         switch (namedColor) {
         
             case 'Pink':
@@ -148,13 +145,12 @@ function productInCart(product) {
 function addProductToCart(product) {
 
     if (productsInCart !== null) {
-        console.log(productsInCart);
+
         // Vérifier si le produit à ajouter est déjà dans le panier
         let inCart = productInCart(product);
 
         if (inCart === true) {
             for (const p of myProducts) {
-                console.log(myProducts);
                 if (product._id === p._id && product.color === p.color) {
                     // Incrémente la quantité du produit dans le panier
                     p.qty += 1;

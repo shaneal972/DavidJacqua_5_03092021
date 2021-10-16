@@ -49,7 +49,6 @@ btnCmd.addEventListener('click', function (event) {
     let validAddress = validate(address, 2, "L'adresse ne doit pas être vide et doit être supérieur à 2 caractères");
     let validCity = validate(city, 3, "La ville ne doit pas être vide et doit être supérieur à 2 caractères");
     let validEmail = validate(email, 4, "");
-    console.log(validFirstName,validLastName,validAddress,validCity,validEmail);
 
     if (
         validFirstName === true &&

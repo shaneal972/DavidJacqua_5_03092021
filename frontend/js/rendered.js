@@ -52,22 +52,42 @@ let myProducts = [];
     // Sélection du select où l'on crée les options
     let selectElt = document.querySelector('#colors');
     // Parcourt du tableau options[]
-    for (let i = 0; i <= options.length + 2; i++)
-    {
-        //Récupère la couleur correspondant à l'indice i
-        let color = options.shift();
-        //Création de l'élément option 
-        let opt = new Option(color, color.toLowerCase().replace(' ', '-'));
-        //Ajout de l'elément dans la balise select en tant qu'enfant
-        selectElt.appendChild(opt);
-    }
+     if (options.length > 1) {
+        for (let i = 0; i <= options.length + 2; i++)
+        {
+            //Récupère la couleur correspondant à l'indice i
+            let color = options.shift();
+            
+            //Création de l'élément option 
+            let opt = new Option(color, color.toLowerCase().replace(' ', '-'));
+            
+            //Ajout de l'elément dans la balise select en tant qu'enfant
+            selectElt.appendChild(opt);
+        }
+     } else {
+        for (let i = 0; i <= options.length; i++)
+        {
+            //Récupère la couleur correspondant à l'indice i
+            let color = options.shift();
+            if (color.includes(' ')) {
+                color = color.toLowerCase().replace(' ', '-');
+            } else {
+                color = color;
+            } 
+            //Création de l'élément option 
+            let opt = new Option(color, color);
+            //Ajout de l'elément dans la balise select en tant qu'enfant
+            selectElt.appendChild(opt);
+        }
+     }
+    
 }
 
 /**
  * Permet d'afficher le  produit Teddie dans la page produit.html
  * @param {Object} teddie
  */
- async function renderOneTeddie(teddie) {
+ function renderOneTeddie(teddie) {
 
     //Récupération du tableau de couleur du produit
     let colors = teddie.colors;
