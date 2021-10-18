@@ -13,6 +13,7 @@ let ulElt = document.querySelector('.list-group');
 let headerCmd = document.querySelector('#header-command');
 
 let myProducts = [];
+let priceInCart = 0;
 
 
 /**
@@ -60,7 +61,7 @@ let myProducts = [];
             
             //Création de l'élément option 
             let opt = new Option(color, color.toLowerCase().replace(' ', '-'));
-            
+
             //Ajout de l'elément dans la balise select en tant qu'enfant
             selectElt.appendChild(opt);
         }
@@ -198,18 +199,22 @@ function renderCart() {
  * @param {Number} qty 
  * @param {HTMLLIElement} li 
  */
-function renderPriceCartByQty(qty, li) {
+function renderPriceCartByQty(qty, li) {    
     
     let cartPrice = li.querySelector('#cart-price');
     let productPrice = li.querySelector('#product-price');
-    let priceInCart = qty * parseFloat(productPrice.innerHTML);
+
+    //Calcul le prix du produit
+    priceInCart = qty * parseFloat(productPrice.innerHTML);
+
+    //Met le priceInCart au obn format avant de le formatter
     priceInCart = priceInCart + '00';
     cartPrice.innerHTML = formattedPrice(priceInCart);
 }
 
 /**
  * Permet de mettre à jour la page avec les informations du panier
- * présent dan sle localStorage
+ * présent dans le localStorage
  */
 function renderInfosOfCartInPage() {
     const nbProducts = document.querySelectorAll('.nb-product');
@@ -288,9 +293,8 @@ let Now = () => {
  * @param {*} commande 
  */
 let renderHeadOfCommand = (commande) => {
-    
     let cmdElt = '';
-  
+
     cmdElt += `
         <div class="card-body">
             <h5 class="card-title text-center">N° commande : </h5>
@@ -311,16 +315,15 @@ let renderHeadOfCommand = (commande) => {
             </div>
             <div class="card-text col-sm col-md-6">
                 <p>Date de l'achat : <br>
-                 <span class="text-info">${Now()}</span>
+                    <span class="text-info">${Now()}</span>
                 </p>
             </div>
         </div>
         <ul class="list-group list-group-flush px-1">
         </ul>`;
-    
+        
         headerCmd.innerHTML = cmdElt;
-
-}
+} 
 
 /**
  * Permet de rendre (d'afficher) le corps d'une commande

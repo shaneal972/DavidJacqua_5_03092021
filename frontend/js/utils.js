@@ -279,7 +279,7 @@ function productQtyChange(elts) {
                 renderPriceCartByQty(qte, li);
                 // Récupère informations du produit
                 product = getInfosOfProductInCartPage(li);
-                updateCartAfterQtyChange(product);
+                updateCartAfterQtyChange(Array(product));
                 renderInfosOfCartInPage();
             }
             if (event.target.innerHTML === '-') {
@@ -291,7 +291,7 @@ function productQtyChange(elts) {
                 renderPriceCartByQty(qte, li);
                 // Récupère informations du produit
                 product = getInfosOfProductInCartPage(li);
-                updateCartAfterQtyChange(product);
+                updateCartAfterQtyChange(Array(product));
                 
                 if (qte < 0 || qte === NaN) {
                     qte = 1;

@@ -12,9 +12,8 @@ if (commande !== null) {
     maCommande.push(JSON.parse(commande));
 } 
 
-if (maCommande.length > 0) {
-    renderHeadOfCommand(maCommande);
-};
+
+renderHeadOfCommand(maCommande);
 
 
 renderQtyOfProduct();    

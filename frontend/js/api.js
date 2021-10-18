@@ -72,12 +72,13 @@ const postCommand = async (contact, products) => {
             'orderId': data.orderId,
             'products': data.products
         };
+        localStorage.setItem('commande', JSON.stringify(commande));
+        return commande;
     } catch (error) {
         erreur.innerHTML = error;
         erreur.style.display = 'block';
     }
     // Stocke le retour du serveur dans le Storage
-    localStorage.setItem('commande', JSON.stringify(commande));
 }
 
 
