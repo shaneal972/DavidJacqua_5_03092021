@@ -42,7 +42,8 @@ let firstname = id('firstname'),
     email = id('email');
 
 
-btnCmd.addEventListener('click', function (event) {
+btnCmd.addEventListener('click', async function (event) {
+    let commande;
     // event.preventDefault();
     let validFirstName = validate(firstname, 0, "Le prénom ne doit pas être vide et doit être supérieur à 2 caractères");
     let validLastName = validate(lastname, 1, "Le nom ne doit pas être vide et doit être supérieur à 2 caractères");
@@ -71,7 +72,9 @@ btnCmd.addEventListener('click', function (event) {
             products.push(p._id);
         });
         //Envoi des informations du client et du panier au serveur en méthode POST
-        postCommand(contact, products);
+        commande = await postCommand(contact, products);
+        
+        localStorage.setItem('commande', JSON.stringify(commande));
     } else {
         event.preventDefault();
     }

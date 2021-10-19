@@ -64,7 +64,7 @@ let validate = (id, serial, message) => {
     if ((id.getAttribute('id') === 'firstname') || (id.getAttribute('id') === 'lastname')) {
        
         // On vérifie que la valeur entrée vérifie la Regex de validation.
-        if (id.value.match(/^[a-zà-ï-]+$/gi)) {
+        if (id.value.match(/^[a-zà-ï- ]+$/gi)) {
             errorMsg[serial].innerHTML = "";
             id.style.border = "2px solid green";
             errorMsg[serial].style.display = "none";

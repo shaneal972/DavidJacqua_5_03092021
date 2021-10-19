@@ -50,7 +50,7 @@ async function getOneTeddie(_id) {
  * @param {Array} products Tableau des id du panier
  */
 const postCommand = async (contact, products) => {
-
+    
     try {
         
         const urlPost = URL_API + 'order';
@@ -72,7 +72,7 @@ const postCommand = async (contact, products) => {
             'orderId': data.orderId,
             'products': data.products
         };
-        localStorage.setItem('commande', JSON.stringify(commande));
+        // localStorage.setItem('commande', JSON.stringify(commande));
         return commande;
     } catch (error) {
         erreur.innerHTML = error;

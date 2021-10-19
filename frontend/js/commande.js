@@ -6,17 +6,18 @@ import {
 
 let numeroCmd = document.querySelector('.num-cmd');
 let maCommande = [];
-let commande = localStorage.getItem('commande');
+let commande;
 
-if (commande !== null) {
-    maCommande.push(JSON.parse(commande));
+renderQtyOfProduct();    
+
+if (localStorage.getItem('commande') !== null && localStorage.getItem('commande') !== undefined) {
+    commande = JSON.parse(localStorage.getItem('commande'));
+
+    maCommande.push(commande);
+    renderHeadOfCommand(maCommande);
 } 
 
 
-renderHeadOfCommand(maCommande);
-
-
-renderQtyOfProduct();    
 
 if (maCommande.length > 0) {
     numeroCmd.innerHTML = maCommande[0].orderId;
