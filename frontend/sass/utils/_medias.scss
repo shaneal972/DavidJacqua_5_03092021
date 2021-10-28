@@ -17,6 +17,13 @@
     }
 }
 
+@media (min-width: map-get($grille, sm)) {
+    .btn-toolbar {
+        display: flex !important;
+        flex-direction: row;
+    }
+}
+
 
 @media (min-width: map-get($grille, md)) {
 
@@ -78,6 +85,11 @@
         &--btn {
             width: 400px;
         }
+    }
+
+    .btn-toolbar {
+        display: flex !important;
+        flex-direction: column;
     }
 
     .aside-cart {

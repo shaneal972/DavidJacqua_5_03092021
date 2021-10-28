@@ -295,6 +295,12 @@ footer section div:nth-child(1) {
     width: 28px;
   }
 }
+@media (min-width: 576px) {
+  .btn-toolbar {
+    display: flex !important;
+    flex-direction: row;
+  }
+}
 @media (min-width: 768px) {
   .nav__item--xs {
     display: block;
@@ -330,6 +336,11 @@ footer section div:nth-child(1) {
 
   .product__item--btn {
     width: 400px;
+  }
+
+  .btn-toolbar {
+    display: flex !important;
+    flex-direction: column;
   }
 
   .aside-cart {
