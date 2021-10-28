@@ -4,7 +4,7 @@ import {
     renderBodyOfCommand
 } from './rendered.js';
 
-let numeroCmd = document.querySelector('.num-cmd');
+
 let maCommande = [];
 let params;
 

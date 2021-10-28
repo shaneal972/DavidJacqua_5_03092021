@@ -3,8 +3,7 @@ import { validate, id } from "./form.js";
 import { postCommand } from "./api.js";
 import {
     deleteProduct,
-    productQtyChange,
-    Now
+    productQtyChange
 } from "./utils.js";
 
 
@@ -16,7 +15,6 @@ let mesProduits = [];
 let liElts = document.querySelectorAll('.product__item');
 let btnCmd = id('btn-cmd');
 let products = [];
-let priceTotal = document.querySelector('#price-total-of-cart');
 
 
 /* Les produits du panier dans le localStorage */
