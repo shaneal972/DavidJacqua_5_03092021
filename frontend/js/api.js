@@ -55,7 +55,9 @@ const postCommand = async (contact, products) => {
         
         const urlPost = URL_API + 'order';
         const response = await fetch(urlPost, {
-            method: 'POST',
+            method: 'post',
+            mode: 'cors',
+            credentials: 'same-origin',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -75,8 +77,9 @@ const postCommand = async (contact, products) => {
         // localStorage.setItem('commande', JSON.stringify(commande));
         return commande;
     } catch (error) {
-        erreur.innerHTML = error;
+        erreur.innerHTML = error.message;
         erreur.style.display = 'block';
+        // throw new TypeError(console.log(error.message));
     }
     // Stocke le retour du serveur dans le Storage
 }

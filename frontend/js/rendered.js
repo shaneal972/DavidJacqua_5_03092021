@@ -3,7 +3,8 @@ import {
     formattedPrice,
     addColorToElt,
     showPlural,
-    qteProductInCart
+    qteProductInCart,
+    Now
 } from "./utils.js";
 
 // Variables
@@ -278,17 +279,6 @@ function renderQtyOfProduct() {
 }
 
 /**
- * Permet de retourner la date en français "samedi 09 octobre 2021"
- * @returns {Date} Date en français
- */
-let Now = () => {
-    let date = new Date();
-    let options = {weekday: "long", year: "numeric", month: "long", day: "2-digit"};
-    return date.toLocaleDateString("fr-FR", options);
-}
-
-
-/**
  * Permet de rendre l'entête d'une commade
  * @param {*} commande 
  */
@@ -298,9 +288,9 @@ let renderHeadOfCommand = (commande) => {
     cmdElt += `
         <div class="card-body">
             <h5 class="card-title text-center">N° commande : </h5>
-            <h6 class="num-cmd text-center text-danger fw-bold fs-4"> ${commande[0].orderId}</h6>
+            <h6 class="num-cmd text-center text-danger fw-bold fs-4"> ${commande['orderId']}</h6>
             <p class="card-text">
-                <span class="text-info">${commande[0].contact.firstName}</span> nous vous remercions pour votre achat 
+                <span class="text-info">${commande['firstname']}</span> nous vous remercions pour votre achat 
                 et espérons qu'il répondra à vos attentes. <br>
                 <span class="py-2 d-block">Vous trouverez ci-dessous le résumé de votre achat :</span>
             </p>
@@ -309,8 +299,8 @@ let renderHeadOfCommand = (commande) => {
             <div class="card-text col-sm col-md-6">
                 Envoyé à : <br>
                 <address class="text-info">
-                    ${commande[0].contact.address} <br>
-                    ${commande[0].contact.city}
+                    ${commande['address']} <br>
+                    ${commande['city']}
                 </address> 
             </div>
             <div class="card-text col-sm col-md-6">

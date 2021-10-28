@@ -6,20 +6,17 @@ import {
 
 let numeroCmd = document.querySelector('.num-cmd');
 let maCommande = [];
-let commande;
+let params;
 
-renderQtyOfProduct();    
+renderQtyOfProduct();
 
-if (localStorage.getItem('commande') !== null && localStorage.getItem('commande') !== undefined) {
-    commande = JSON.parse(localStorage.getItem('commande'));
+params = new URLSearchParams(document.location.search.substring(1));
 
-    maCommande.push(commande);
-    renderHeadOfCommand(maCommande);
-} 
-
+params.forEach((key, value) => {
+    maCommande[value] = key;
+})
 
 
-if (maCommande.length > 0) {
-    numeroCmd.innerHTML = maCommande[0].orderId;
-    renderBodyOfCommand();
-}
+renderHeadOfCommand(maCommande);
+
+renderBodyOfCommand();

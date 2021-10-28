@@ -51,10 +51,8 @@ function formattedPrice(price) {
     return arrayOfProduct;
 }
 
-
-
 /**
- * Permet de coloré le nom de la couleur du produit par sa couleur 
+ * Permet de mettre un background coloré sur le nom de la couleur du produit
  */
 function addColorToElt() {
 
@@ -101,7 +99,6 @@ function addColorToElt() {
         }
     }
 }
-
 
 /**
  * Permet de récupérer la valeur de l'option sélectionnée
@@ -174,22 +171,6 @@ function addProductToCart(product) {
 }
 
 /**
- * Permet de récupérer le nom 'name' et la couleur 'color' d'un produit de la liste
- * @param {HTMLLIElement} li 
- * @returns {Object} product
- */
-function getInfosOfProductInCartPage(li) {
-    
-    let productInPage = {
-        name: li.querySelector('#product-name').innerHTML,
-        color: li.querySelector('#product-color').innerHTML,
-        qty: Number(li.querySelector('#input-qte').value)
-    }
-
-    return productInPage;
-}
-
-/**
  * Permet de supprimer un élément de la liste d'affichage des produits
  * sur la page cart.html et met à jour le panier du Storage
  */
@@ -225,7 +206,6 @@ function updateCartInStorageAfterDelete(products) {
         localStorage.setItem('panier', JSON.stringify(myProducts));
     })
 }
-
 
 /**
  * Permet de mettre à jour le panier du Storage après un changement de quantité
@@ -306,6 +286,10 @@ function productQtyChange(elts) {
     });
 }
 
+/**
+ * Permet de retourner la quantité de produits dans le panier
+ * @returns {Integer} Quantité de produit
+ */
 function qteProductInCart() {
     if (productsInCart !== null) {
         myProducts.forEach(p => {
@@ -318,8 +302,19 @@ function qteProductInCart() {
     return qte;
 }
 
+
 /**
- * Met au pluriel un mot en lui ajoutant un 's' ou pas.
+ * Permet de retourner la date en français "samedi 09 octobre 2021"
+ * @returns {Date} Date en français
+ */
+ let Now = () => {
+    let date = new Date();
+    let options = {weekday: "long", year: "numeric", month: "long", day: "2-digit"};
+    return date.toLocaleDateString("fr-FR", options);
+}
+
+/**
+ * Permet de mettre au pluriel un mot en lui ajoutant un 's' ou pas.
  * @param {Number} qte 
  * @returns {String} plurals
  */
@@ -330,10 +325,25 @@ function showPlural(qte) {
     return plurals;
 }
 
+// /**
+//  * Permet de récupérer le nom 'name' et la couleur 'color' d'un produit de la liste
+//  * @param {HTMLLIElement} li 
+//  * @returns {Object} product
+//  */
+// function getInfosOfProductInCartPage(li) {
+    
+//     let productInPage = {
+//         name: li.querySelector('#product-name').innerHTML,
+//         color: li.querySelector('#product-color').innerHTML,
+//         qty: Number(li.querySelector('#input-qte').value)
+//     }
+
+//     return productInPage;
+// }
+
 export {
     formattedPrice,
     getInfosInCartByName,
-    // getQtyOfProductsToCommand,
     getSelectedColor,
     productInCart,
     addProductToCart,
@@ -343,5 +353,6 @@ export {
     deleteProductWhenInputChange,
     productQtyChange,
     qteProductInCart,
+    Now,
     showPlural
 };

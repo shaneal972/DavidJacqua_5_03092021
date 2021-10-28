@@ -6,14 +6,14 @@
  * @param {HTMLElement} id 
  * @returns {Element}
  */
- let id = (id) => document.getElementById(id);
+let id = (id) => document.getElementById(id);
 
  /**
   * Permet de récupérer un élément par le nom d'une classe
   * @param {*} classes 
   * @returns {Element}
   */
- let classes = (classes) => document.getElementsByClassName(classes);
+let classes = (classes) => document.getElementsByClassName(classes);
 
 let errorMsg = classes("error");
 

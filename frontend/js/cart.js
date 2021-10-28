@@ -3,7 +3,8 @@ import { validate, id } from "./form.js";
 import { postCommand } from "./api.js";
 import {
     deleteProduct,
-    productQtyChange
+    productQtyChange,
+    Now
 } from "./utils.js";
 
 
@@ -15,6 +16,7 @@ let mesProduits = [];
 let liElts = document.querySelectorAll('.product__item');
 let btnCmd = id('btn-cmd');
 let products = [];
+let priceTotal = document.querySelector('#price-total-of-cart');
 
 
 /* Les produits du panier dans le localStorage */
@@ -71,10 +73,20 @@ btnCmd.addEventListener('click', async function (event) {
         mesProduits.forEach(p => {
             products.push(p._id);
         });
-        //Envoi des informations du client et du panier au serveur en méthode POST
-        commande = await postCommand(contact, products);
-        
-        localStorage.setItem('commande', JSON.stringify(commande));
+
+        //Envoi des informations au serveur par la méthode POST
+        try {
+            commande = await postCommand(contact, products);
+            //Passage des infos commandes en paramètres de l'URL
+            document.location = `
+            commande.html?orderId=${commande.orderId}
+            &address=${commande.contact.address}
+            &city=${commande.contact.city}
+            &firstname=${commande.contact.firstName}`;
+        } catch(error) {
+            console.log(error.message);
+        }
+
     } else {
         event.preventDefault();
     }
