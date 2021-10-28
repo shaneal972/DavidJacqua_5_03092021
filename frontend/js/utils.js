@@ -49,7 +49,7 @@ function formattedPrice(price) {
     
 
     return arrayOfProduct;
-}
+};
 
 /**
  * Permet de mettre un background coloré sur le nom de la couleur du produit
@@ -98,7 +98,7 @@ function addColorToElt() {
             spans[i].classList.add(namedColor);
         }
     }
-}
+};
 
 /**
  * Permet de récupérer la valeur de l'option sélectionnée
@@ -115,7 +115,7 @@ function addColorToElt() {
     let text = selectedElt.text;
     
     return text;
-}
+};
 
 /**
  * Permet de vérifier la présence du produit (product) dans le panier.
@@ -133,7 +133,7 @@ function productInCart(product) {
     }
     
     return inCart;
-}
+};
 
  /**
  * Permet d'ajouter un produit (product) dans le panier 
@@ -168,7 +168,7 @@ function addProductToCart(product) {
         // Création du panier dans le localStorage
         localStorage.setItem('panier', JSON.stringify(mesProduits));
     }
-}
+};
 
 /**
  * Permet de supprimer un élément de la liste d'affichage des produits
@@ -189,7 +189,7 @@ function deleteProduct() {
             renderInfosOfCartInPage();
         })
     });
-}
+};
 
 /**
  * Permet de mettre à jour le panier du Storage
@@ -205,7 +205,7 @@ function updateCartInStorageAfterDelete(products) {
         })
         localStorage.setItem('panier', JSON.stringify(myProducts));
     })
-}
+};
 
 /**
  * Permet de mettre à jour le panier du Storage après un changement de quantité
@@ -222,7 +222,7 @@ function updateCartAfterQtyChange(products) {
         })
         localStorage.setItem('panier', JSON.stringify(myProducts));
     })
-}
+};
 
 /**
  * Permet de supprimer un élément de la liste d'affichage des produits
@@ -239,7 +239,7 @@ function updateCartAfterQtyChange(products) {
     productsDelete.push(product);
      updateCartInStorageAfterDelete(productsDelete);
      renderInfosOfCartInPage();
-}
+};
 
 /**
  * Permet de changer les informations d'un produit si la quantité change
@@ -284,7 +284,7 @@ function productQtyChange(elts) {
             }
         });
     });
-}
+};
 
 /**
  * Permet de retourner la quantité de produits dans le panier
@@ -300,18 +300,18 @@ function qteProductInCart() {
         qte += mp.qty;
     });
     return qte;
-}
+};
 
 
 /**
  * Permet de retourner la date en français "samedi 09 octobre 2021"
  * @returns {Date} Date en français
  */
- let Now = () => {
+let Now = () => {
     let date = new Date();
-    let options = {weekday: "long", year: "numeric", month: "long", day: "2-digit"};
+    let options = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
     return date.toLocaleDateString("fr-FR", options);
-}
+};
 
 /**
  * Permet de mettre au pluriel un mot en lui ajoutant un 's' ou pas.
@@ -325,21 +325,21 @@ function showPlural(qte) {
     return plurals;
 }
 
-// /**
-//  * Permet de récupérer le nom 'name' et la couleur 'color' d'un produit de la liste
-//  * @param {HTMLLIElement} li 
-//  * @returns {Object} product
-//  */
-// function getInfosOfProductInCartPage(li) {
+/**
+ * Permet de récupérer le nom 'name' et la couleur 'color' d'un produit de la liste
+ * @param {HTMLLIElement} li 
+ * @returns {Object} product
+ */
+function getInfosOfProductInCartPage(li) {
     
-//     let productInPage = {
-//         name: li.querySelector('#product-name').innerHTML,
-//         color: li.querySelector('#product-color').innerHTML,
-//         qty: Number(li.querySelector('#input-qte').value)
-//     }
+    let productInPage = {
+        name: li.querySelector('#product-name').innerHTML,
+        color: li.querySelector('#product-color').innerHTML,
+        qty: Number(li.querySelector('#input-qte').value)
+    };
 
-//     return productInPage;
-// }
+    return productInPage;
+}
 
 export {
     formattedPrice,

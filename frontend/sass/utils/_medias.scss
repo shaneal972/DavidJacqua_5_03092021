@@ -1,3 +1,23 @@
+@media (min-width: map-get($grille, xs)) {
+    .aside-cart {
+        margin-right: 0;
+    }
+
+    .btn-toolbar {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .product {
+        &__qte {
+            &--input {
+                width: 28px;
+            }
+        }
+    }
+}
+
+
 @media (min-width: map-get($grille, md)) {
 
    

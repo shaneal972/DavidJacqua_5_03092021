@@ -281,6 +281,20 @@ footer section div:nth-child(1) {
   margin-bottom: 0;
 }
 
+@media (min-width: 375px) {
+  .aside-cart {
+    margin-right: 0;
+  }
+
+  .btn-toolbar {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .product__qte--input {
+    width: 28px;
+  }
+}
 @media (min-width: 768px) {
   .nav__item--xs {
     display: block;
