@@ -4,13 +4,17 @@ import {
     renderBodyOfCommand
 } from './rendered.js';
 
+import {
+    getParamsInUrl
+} from './utils.js'
 
+//variables
 let maCommande = [];
 let params;
 
 renderQtyOfProduct();
 
-params = new URLSearchParams(document.location.search.substring(1));
+params = getParamsInUrl();
 
 params.forEach((key, value) => {
     maCommande[value] = key;
@@ -20,3 +24,6 @@ params.forEach((key, value) => {
 renderHeadOfCommand(maCommande);
 
 renderBodyOfCommand();
+
+// Suppression du panier dans le localStorage
+localStorage.removeItem('panier');

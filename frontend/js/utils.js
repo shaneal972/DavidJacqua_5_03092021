@@ -341,6 +341,17 @@ function getInfosOfProductInCartPage(li) {
     return productInPage;
 }
 
+/**
+ * Permet de récupérer les params depuis une URL
+ */
+function getParamsInUrl() {
+    let params; 
+    
+    params = new URLSearchParams(document.location.search.substring(1));
+
+    return params;
+}
+
 export {
     formattedPrice,
     getInfosInCartByName,
@@ -354,5 +365,6 @@ export {
     productQtyChange,
     qteProductInCart,
     Now,
-    showPlural
+    showPlural,
+    getParamsInUrl
 };

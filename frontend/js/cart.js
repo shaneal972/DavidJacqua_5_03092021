@@ -67,22 +67,25 @@ btnCmd.addEventListener('click', async function (event) {
             email: email.value,
         }
         
-        //On met les id du panier dans le tableau products
-        mesProduits.forEach(p => {
-            products.push(p._id);
-        });
-
-        //Envoi des informations au serveur par la méthode POST
-        try {
-            commande = await postCommand(contact, products);
-            //Passage des infos commandes en paramètres de l'URL
-            document.location = `
-            commande.html?orderId=${commande.orderId}
-            &address=${commande.contact.address}
-            &city=${commande.contact.city}
-            &firstname=${commande.contact.firstName}`;
-        } catch(error) {
-            console.log(error.message);
+        if (mesProduits !== null) {
+            
+            //On met les id du panier dans le tableau products
+            mesProduits.forEach(p => {
+                products.push(p._id);
+            });
+    
+            //Envoi des informations au serveur par la méthode POST
+            try {
+                commande = await postCommand(contact, products);
+                //Passage des infos commandes en paramètres de l'URL
+                document.location = `
+                commande.html?orderId=${commande.orderId}
+                &address=${commande.contact.address}
+                &city=${commande.contact.city}
+                &firstname=${commande.contact.firstName}`;
+            } catch(error) {
+                console.log(error.message);
+            }
         }
 
     } else {

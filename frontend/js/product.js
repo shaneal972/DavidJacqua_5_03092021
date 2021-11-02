@@ -1,14 +1,14 @@
 import { getOneTeddie } from "./api.js";
 import { renderOneTeddie, renderQtyOfProduct } from "./rendered.js";
-import { getSelectedColor, addProductToCart } from "./utils.js";
+import { getSelectedColor, addProductToCart, getParamsInUrl } from "./utils.js";
 
 
 // Variables
 let _id = '';
 let teddie = {};
+let params;
 
-
-let params = new URLSearchParams(document.location.search.substring(1));
+params = getParamsInUrl();
 _id = params.get("id");
 
 teddie = await getOneTeddie(_id);

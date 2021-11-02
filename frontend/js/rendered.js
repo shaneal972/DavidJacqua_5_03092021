@@ -329,35 +329,58 @@ let renderBodyOfCommand = () => {
 
     //Récupération des quantités et des prix du panier
     myProducts = JSON.parse(cart);
-    myProducts.forEach(mp => {
-        quantites.push(mp.qty);
-        prices.push(mp.price);
-    });
 
-    //Calcul de la quantité de produit et du prix total
-    let i = 0;
-    while (i < quantites.length) {
-        total += (quantites[i] * prices[i]);
-        totalQte += quantites[i];
-        i++;
-    }
+    if (myProducts !== null) {
+        
+        myProducts.forEach(mp => {
+            quantites.push(mp.qty);
+            prices.push(mp.price);
+        });
 
-    //Création de l'élément à afficher dans l'HTML
-    bodyCardElt += `
+        //Calcul de la quantité de produit et du prix total
+        let i = 0;
+        while (i < quantites.length) {
+            total += (quantites[i] * prices[i]);
+            totalQte += quantites[i];
+            i++;
+        }
+
+        //Création de l'élément à afficher dans l'HTML
+        bodyCardElt += `
+            <div class="card-body">
+                <p class="card-text info-qte-commande">
+                    Votre commande contenait <span class="text-info" id="qte">${totalQte}</span> produits. Vous trouverez 
+                    le montant total ci-dessous.
+                </p>
+                <p class="text-end">
+                    Total : 
+                    <span class="total-cmd text-danger fw-bold fs-3">${formattedPrice(total)}</span>
+                    <span class="text-danger fw-bold fs-3"> € </span>
+                </p>
+            </div>`;    
+
+        // Insertion de l'elt dans la page commande.html
+        bodyOfCard.innerHTML = bodyCardElt;
+    } else {
+        bodyCardElt += `
         <div class="card-body">
             <p class="card-text info-qte-commande">
-                Votre commande contenait <span class="text-info" id="qte">${totalQte}</span> produits. Vous trouverez 
-                le montant total ci-dessous.
+                Votre commande ne contenant pas de produits nous ne pourrons pas
+                vous livrer.
             </p>
-            <p class="text-end">
-                Total : 
-                <span class="total-cmd text-danger fw-bold fs-3">${formattedPrice(total)}</span>
-                <span class="text-danger fw-bold fs-3"> € </span>
+            <p class="card-text">
+               Vous pouvez ajouter des produits en <br>
+               <a href="./index.html" type="button" class="btn btn-outline-dark btn-lg mt-3 fs-6">
+                    adoptant un autre
+                </a>
             </p>
         </div>`;    
 
-    // Insertion de l'elt dans la page commande.html
-    bodyOfCard.innerHTML = bodyCardElt;
+        // Insertion de l'elt dans la page commande.html
+        bodyOfCard.innerHTML = bodyCardElt;
+    }
+
+    
 }
 
 
