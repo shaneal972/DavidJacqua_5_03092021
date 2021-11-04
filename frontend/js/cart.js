@@ -45,8 +45,8 @@ let firstname = id('firstname'),
 btnCmd.addEventListener('click', async function (event) {
     let commande;
     // event.preventDefault();
-    let validFirstName = validate(firstname, 0, "Le prénom ne doit pas être vide et doit être supérieur à 2 caractères");
-    let validLastName = validate(lastname, 1, "Le nom ne doit pas être vide et doit être supérieur à 2 caractères");
+    let validFirstName = validate(firstname, 0, "Le prénom ne doit pas être vide et doit être supérieur à 2 caractères et ne peut contenir de nombre");
+    let validLastName = validate(lastname, 1, "Le nom ne doit pas être vide et doit être supérieur à 2 caractères et ne peut contenir de nombre");
     let validAddress = validate(address, 2, "L'adresse ne doit pas être vide et doit être supérieur à 2 caractères");
     let validCity = validate(city, 3, "La ville ne doit pas être vide et doit être supérieur à 2 caractères");
     let validEmail = validate(email, 4, "");
