@@ -155,13 +155,13 @@ function createProduct(product) {
             <div class="infos__product--qte mx-3 py-2">
                 <div class="d-flex btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group-sm mr-2 d-block" role="group" aria-label="First group">
-                    <button id="btn-moins" type="button" class="btn-cart btn-secondary">-</button>
+                        <button id="btn-plus" type="button" class="btn-cart btn-secondary">+</button>
                     </div>
                     <div class="input-group-sm product__qte--input d-block">
-                    <input id="input-qte" type="text" data-qty=${product.qty} class="form-control" value="${product.qty}">
+                        <input id="input-qte" type="text" data-qty=${product.qty} class="form-control" value="${product.qty}">
                     </div>
                     <div class="btn-group-sm mr-2 d-block" role="group" aria-label="First group">
-                        <button id="btn-plus" type="button" class="btn-cart btn-secondary">+</button>
+                        <button id="btn-moins" type="button" class="btn-cart btn-secondary">-</button>
                     </div>
                 </div>
             </div>

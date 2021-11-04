@@ -242,6 +242,22 @@ function updateCartAfterQtyChange(products) {
 };
 
 /**
+ * Permet de recupérer les infos d'un produit sur la pagge cart.html
+ * @param {HTMLLIElement} li 
+ * @returns {object} product
+ */
+function getInfosOfProductInCartPage(li) {
+
+    let productInPage = {
+        name: li.querySelector('#product-name').innerHTML,
+        color: li.querySelector('#product-color').innerHTML,
+        qty: Number(li.querySelector('#input-qte').value)
+    }
+
+    return productInPage;
+}
+
+/**
  * Permet de changer les informations d'un produit si la quantité change
  * @param {HTMLLIElement} elts 
  */
