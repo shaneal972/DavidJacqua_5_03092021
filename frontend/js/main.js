@@ -7,7 +7,18 @@ let teddies = [];
 
 renderQtyOfProduct();
 
-teddies = await getAllTeddies();
+// teddies = await getAllTeddies();
 
-// Créer le teddie et l'insérer dans le DOM
-renderTeddies(teddies);
+// Récupération des teddies en utilisant .then et .catch
+getAllTeddies()
+    .then(
+        (response) => {
+            teddies = response;
+            // Créer le teddie et l'insérer dans le DOM
+            renderTeddies(teddies);
+        }
+    )
+    .catch((error) => response.status(400).json({
+        error: error
+    }));
+
