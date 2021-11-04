@@ -326,22 +326,6 @@ function showPlural(qte) {
 }
 
 /**
- * Permet de récupérer le nom 'name' et la couleur 'color' d'un produit de la liste
- * @param {HTMLLIElement} li 
- * @returns {Object} product
- */
-function getInfosOfProductInCartPage(li) {
-    
-    let productInPage = {
-        name: li.querySelector('#product-name').innerHTML,
-        color: li.querySelector('#product-color').innerHTML,
-        qty: Number(li.querySelector('#input-qte').value)
-    };
-
-    return productInPage;
-}
-
-/**
  * Permet de récupérer les params depuis une URL
  */
 function getParamsInUrl() {
