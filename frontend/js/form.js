@@ -71,7 +71,7 @@ let validate = (id, serial, message) => {
             valid = true;
         } else {
             errorMsg[serial].style.display = "block";
-            errorMsg[serial].innerHTML = "Ce champ ne doit pas contenir de nombre, merci de le retaper";
+            errorMsg[serial].innerHTML = "Ce champ ne doit pas contenir de nombre et ne doit pas être vide, merci de le retaper";
             id.style.border = "2px solid red";
             valid = false;
         }
